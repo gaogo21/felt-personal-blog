@@ -1,0 +1,27 @@
+# Dependencies and local build caches
+node_modules/
+.cache/
+.npm/
+npm-cache/
+.sites-runtime/
+.sites-checkout/
+
+# Provider-specific private deployment metadata
+.openai/
+
+# Credentials and local environment settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local operating-system/editor files and temporary outputs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+*.tmp
+__pycache__/
+*.pyc
