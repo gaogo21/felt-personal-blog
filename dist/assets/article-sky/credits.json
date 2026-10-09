@@ -1,0 +1,24 @@
+{
+  "license": "Unsplash License",
+  "license_url": "https://unsplash.com/license",
+  "images": [
+    {
+      "author": "Jack B",
+      "source": "https://unsplash.com/photos/a-night-sky-with-a-few-stars-in-it-bOfCH9TnRg4",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license",
+      "recommended_credit": "Photo by Jack B on Unsplash",
+      "sha256": "ea16e32317d829d2d316d5b2b16e7c1701117bb338baf0a274dfeaba3e818b3e",
+      "processing": "Rectangular crop and WebP resize/encoding only; no recoloring, darkening, generative editing, or added/removed stars."
+    },
+    {
+      "author": "Laurent Peignault",
+      "source": "https://unsplash.com/photos/blue-milky-way-9xAGE60IJpk",
+      "license": "Unsplash License",
+      "license_url": "https://unsplash.com/license",
+      "recommended_credit": "Photo by Laurent Peignault on Unsplash",
+      "sha256": "bf17ec8ef335058b3054b31a23ef34f2315819cb02a7c0b4894d1f775f07b113",
+      "processing": "Rectangular crop and WebP resize/encoding only; no recoloring, darkening, generative editing, or added/removed stars."
+    }
+  ]
+}
