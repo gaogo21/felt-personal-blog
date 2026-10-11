@@ -1,10 +1,18 @@
-import fs from 'node:fs';import vm from 'node:vm';import assert from 'node:assert/strict';
-const src=fs.readFileSync('dist/app.js','utf8'),css=fs.readFileSync('dist/style.css','utf8');const sandbox={document:{querySelector:()=>null,querySelectorAll:()=>[]},matchMedia:()=>({matches:false})};vm.createContext(sandbox);vm.runInContext(src.slice(0,src.indexOf('function setupExperience'))+';exports={home,articleList,reading,projectList,projectDetail,life,about,articles,projects,columns,columnDirectory,columnArticles};',sandbox);const x=sandbox.exports;
-const pages=[['home',x.home()],['articles',x.articleList()],['knowledge',x.reading('io-multiplexing',true)],['projects',x.projectList()],['life',x.life()],['about',x.about()],...x.articles.map(a=>['article/'+a.id,x.reading(a.id)]),...x.projects.map(p=>['project/'+p.id,x.projectDetail(p.id)]),...x.columns.map(c=>['column/'+c.id,x.columnDirectory(c.id)])];
-for(const[name,html]of pages){assert(html.includes('<h1'),name+' requires a title');for(const m of html.matchAll(/(?:src|poster)="(\/assets\/[^\"]+)"/g))assert(fs.existsSync('dist'+m[1]),`missing ${m[1]}`);assert(!/undefined|NaN/.test(html),name+' has unresolved content')}
-assert.equal((x.articleList('前端开发').match(/class="story-card article-row"/g)||[]).length,3);assert.equal((x.articleList('计算机基础').match(/class="story-card article-row"/g)||[]).length,1);for(const a of x.articles)for(const[id]of a.sections)assert(a.body.includes(`id="${id}"`),`missing heading ${id}`);for(const m of css.matchAll(/url\(['"]?(\/assets\/[^)'"\s]+)['"]?\)/g))assert(fs.existsSync('dist'+m[1]),`missing CSS asset ${m[1]}`);
-assert(!/plush|toy-orbit|blinkTimer|eyelid/.test(src+css+fs.readFileSync('dist/index.html','utf8')));assert(!fs.existsSync('dist/assets/plush-toys.png'));assert(css.includes('prefers-reduced-motion'));assert(src.includes("import('/collectible.js')"));assert(x.home().includes('ALWAYS'));assert(x.home().includes('CURIOUS.'));assert.equal((x.home().match(/class="collectible-figure"/g)||[]).length,3);assert(!/avatar3d|pose-preview|vendor\/three|importmap/.test(src+fs.readFileSync('dist/index.html','utf8')));assert(!x.home().includes('<video'));assert(!x.home().includes('我的小站'));assert(!src.includes('localStorage'));
-const carousel=fs.readFileSync('dist/collectible.js','utf8');assert(carousel.includes('INTERVAL=3000'));assert(carousel.includes('visibilitychange'));assert(carousel.includes('touchend'));assert(carousel.includes('prefers-reduced-motion'));assert(!fs.existsSync('dist/assets/felt-avatar.glb'));for(const name of ['green-peace','pink-hoodie','blue-pointing'])assert(fs.existsSync('dist/assets/trio/felt-'+name+'.png'));
-console.log(JSON.stringify({passed:true,routes:pages.length,assets:'all local references exist',categories:'expected counts',headings:'all TOC targets exist',hero:'approved green/pink/blue portraits, English title, 3000ms interval, no former model dependencies',browser_qa:'reported separately'},null,2));
-
-assert.equal(x.columns.length,4);for(const c of x.columns){assert(c.articleIds.every(id=>x.articles.some(a=>a.id===id&&a.category===c.name)));const body=x.columnDirectory(c.id);assert.equal((body.match(/class="column-directory-row"/g)||[]).length,x.columnArticles(c).length);for(const a of x.columnArticles(c))assert(body.includes('#/article/'+a.id))}assert(!/knowledge-room|exhibition-preview|life-preview|closing-title/.test(x.home()));assert.equal((x.home().match(/class="column-panel"/g)||[]).length,4);console.log('Column directories: '+x.columns.map(c=>c.name+' '+x.columnArticles(c).length).join(', '));
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const src=fs.readFileSync('dist/app.js','utf8'),css=fs.readFileSync('dist/style.css','utf8');
+const context={document:{querySelector:()=>null,querySelectorAll:()=>[]},matchMedia:()=>({matches:false})};
+vm.createContext(context);
+vm.runInContext(src.replace(/^import .*\n/,'').slice(0,src.replace(/^import .*\n/,'').indexOf('function setupExperience'))+';exports={home,articleList,life,projectList,about,notfound};',context);
+for(const[name,render]of Object.entries(context.exports)) {
+ const html=render();assert(html.includes('<h1'),name+' requires a title');assert(!/undefined|NaN/.test(html),name+' has unresolved content');
+ for(const m of html.matchAll(/(?:src|poster)="(\/assets\/[^\"]+)"/g))assert(fs.existsSync('dist'+m[1]),`missing ${m[1]}`);
+}
+for(const m of css.matchAll(/url\(['"]?(\/assets\/[^)'"\s]+)['"]?\)/g))assert(fs.existsSync('dist'+m[1]),`missing CSS asset ${m[1]}`);
+assert(src.includes('await loadRoute'));assert(src.includes("import('/collectible.js')"));assert(css.includes('prefers-reduced-motion'));
+assert(!src.includes('localStorage'));assert(!src.includes('body:`'));assert.equal((context.exports.home().match(/class="collectible-figure"/g)||[]).length,3);
+const carousel=fs.readFileSync('dist/collectible.js','utf8');for(const text of ['INTERVAL=3000','visibilitychange','touchend','prefers-reduced-motion'])assert(carousel.includes(text));
+const demo=JSON.parse(fs.readFileSync('data/demo-content.json','utf8'));
+for(const media of demo.media)assert(fs.existsSync('dist'+media.designPath));
+console.log('Frontend static assets, empty states, dynamic content loading and retained hero passed. Real API/browser flows are tested separately.');

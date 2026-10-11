@@ -1,0 +1,102 @@
+{
+  "archiveCommit": "db2a8fe866c181d47f8a6f2081cc0d6aae6fc365",
+  "archiveSha256": "49ad846992c95282a8cdd369e4873db9eb39dad0bcc4b7d398490d05b3d9717b",
+  "files": [
+    {
+      "source": "snapshots/216/src/Blog.Web/Application/RichText/RichTextSchema.cs",
+      "destination": "src/Blog.Web/Application/RichText/RichTextSchema.cs",
+      "originalSha256": "8269dd823805895ec5cf6269ca0b8c66a64f178e3ca6b16cbcb11fcb3454312a",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/097/src/Blog.Web/Application/RichText/RichTextUrl.cs",
+      "destination": "src/Blog.Web/Application/RichText/RichTextUrl.cs",
+      "originalSha256": "b1ea166db39248fddd3a17ff1a6cd6e5da279f555acd9fe112a550d5c195b580",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/018/src/Blog.Web/Application/RichText/RichTextDocument.cs",
+      "destination": "src/Blog.Web/Application/RichText/RichTextDocument.cs",
+      "originalSha256": "dd36d21873de34ec4b97cb4ef90236b5cdf0518077d1e7ceef06d844e7a1a1fb",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/125/src/Blog.Web/Domain/ContentLimits.cs",
+      "destination": "src/Blog.Web/Domain/ContentLimits.cs",
+      "originalSha256": "94d742005bcaee2861e21f7f4b6f250c4c1928909f2c5cf7c2d5dc9cb3df1c7f",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/099/frontend/editor/src/editor.mjs",
+      "destination": "frontend/editor/src/editor.mjs",
+      "originalSha256": "3b615ba645b88f544cfb4878fa786eaf22b186b79ffe1b9ffe6af15bd3c5c542",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/098/frontend/editor/src/contract.mjs",
+      "destination": "frontend/editor/src/contract.mjs",
+      "originalSha256": "6e81c62302307de578f447af8c301f4ac4ce6710e831406fb1b8e6d63d7218bd",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/100/frontend/editor/src/extensions.mjs",
+      "destination": "frontend/editor/src/extensions.mjs",
+      "originalSha256": "5ee02666320ab503f80d354ce1e46e097eb0ccaf72f5112326f03564fc13ef7b",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/101/frontend/editor/src/paste.mjs",
+      "destination": "frontend/editor/src/paste.mjs",
+      "originalSha256": "954b3ee130887e37c3b193b1045b10a819011e14ceff596de2ea7af632e2f113",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/103/frontend/editor/src/content-limits.json",
+      "destination": "frontend/editor/src/content-limits.json",
+      "originalSha256": "60bcd8016a3ea4340f9b1f1bce3ca2ec7827f5c21d9598dd03db70e3612904cd",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/104/frontend/editor/package.json",
+      "destination": "frontend/editor/package.json",
+      "originalSha256": "4b9ce4a42eba31e9733b3ad64a0182dce6b9101c093a74b8b8552731bad686a5",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/270/frontend/editor/vite.config.mjs",
+      "destination": "frontend/editor/vite.config.mjs",
+      "originalSha256": "2e3e4738d34f2b082206de4ad49401b22b661d919a2a00bbe57c951e75e6a005",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/271/frontend/editor/scripts/licenses.mjs",
+      "destination": "frontend/editor/scripts/licenses.mjs",
+      "originalSha256": "f785729719dc8924dfbd559ea9d0fa16210cdd19c821383589844153351d61eb",
+      "status": "verified historical body; license-generation description adapted"
+    },
+    {
+      "source": "snapshots/102/frontend/editor/tests/editor.test.mjs",
+      "destination": "frontend/editor/tests/editor.test.mjs",
+      "originalSha256": "709730417f7829947028b1c2ab229c73279526e9ec19901d679f2a1801600a60",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/105/frontend/editor/tests/contract-fixtures.json",
+      "destination": "frontend/editor/tests/contract-fixtures.json",
+      "originalSha256": "75a01ca36bc13cd066b896743fe19dbb3ac6d600673c261dae8813812a4c25d2",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/121/src/Blog.Web/Infrastructure/Media/ToolMediaFileProcessor.cs",
+      "destination": "src/Blog.Web/Infrastructure/Media/ToolMediaFileProcessor.cs",
+      "originalSha256": "cd59d7ef4ae858b90eab339edf5a704cb63f9c3fc813352ee90ec6eab4d4a1a3",
+      "status": "verified historical body; reused unchanged"
+    },
+    {
+      "source": "snapshots/122/src/Blog.Web/Infrastructure/Media/BoundedMediaProcess.cs",
+      "destination": "src/Blog.Web/Infrastructure/Media/BoundedMediaProcess.cs",
+      "originalSha256": "b55ffaccffdcaa7be787b7cfddc774d484f61b7c8d7a3d34af2b21c233ffd7a4",
+      "status": "verified historical body; reused unchanged"
+    }
+  ]
+}

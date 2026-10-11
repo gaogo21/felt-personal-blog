@@ -1,0 +1,49 @@
+name: Verify blog
+on:
+  push:
+    branches: [main, 'codex/**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: felt
+          POSTGRES_PASSWORD: acceptance-local-only
+          POSTGRES_DB: felt_blog
+        ports: ['5432:5432']
+        options: --health-cmd 'pg_isready -U felt -d felt_blog' --health-interval 3s --health-timeout 3s --health-retries 20
+    env:
+      ConnectionStrings__Blog: Host=127.0.0.1;Database=felt_blog;Username=felt;Password=acceptance-local-only
+      Media__ScannerDatabasePath: /var/lib/clamav
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/editor/package-lock.json
+      - name: Install native media tools and official signatures
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg clamav clamav-freshclam postgresql-client
+          sudo systemctl stop clamav-freshclam || true
+          sudo freshclam
+      - run: npm ci --prefix frontend/editor
+      - run: npm test --prefix frontend/editor
+      - run: npm run build --prefix frontend/editor
+      - run: node validate.mjs
+      - run: dotnet build src/Blog.Web
+      - run: dotnet tool restore
+      - name: Ensure migration matches model
+        run: dotnet tool run dotnet-ef migrations has-pending-model-changes --project src/Blog.Web
+      - name: Run real database and native media acceptance
+        run: python3 tests/integration.py
+      - run: dotnet publish src/Blog.Web -c Release -o artifacts/publish

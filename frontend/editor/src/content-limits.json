@@ -1,0 +1,15 @@
+{
+  "BodyScalars": 100000,
+  "LinkScalars": 2048,
+  "AltScalars": 200,
+  "CaptionScalars": 240,
+  "CreditScalars": 160,
+  "LicenseScalars": 120,
+  "JsonBytes": 2097152,
+  "JsonNodes": 2000,
+  "JsonDepth": 12,
+  "CodeScalars": 30000,
+  "TableRows": 20,
+  "TableColumns": 6,
+  "CellScalars": 2000
+}

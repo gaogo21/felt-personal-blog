@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: felt
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in your local environment}
+      POSTGRES_DB: felt_blog
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-55432}:5432"
+    volumes:
+      - database:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U felt -d felt_blog"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  app:
+    profiles: [app]
+    build: .
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Production}
+      ConnectionStrings__Blog: Host=db;Database=felt_blog;Username=felt;Password=${POSTGRES_PASSWORD}
+      Blog__AdminName: ${Blog__AdminName:-admin}
+      Blog__AdminPassword: ${Blog__AdminPassword:-}
+      Backup__Key: ${Backup__Key:-}
+      ReverseProxy__KnownProxy: ${ReverseProxy__KnownProxy:-}
+      AllowedHosts: ${AllowedHosts:-localhost;127.0.0.1}
+    ports:
+      - "127.0.0.1:${APP_PORT:-5080}:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - private:/data
+      - scanner:/var/lib/clamav
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health/ready"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+volumes:
+  database:
+  private:
+  scanner:

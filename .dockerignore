@@ -1,0 +1,11 @@
+.git
+runtime
+output
+artifacts
+.playwright-cli
+**/bin
+**/obj
+**/node_modules
+frontend/editor/generated
+src/Blog.Web/wwwroot/js/admin/editor.bundle.js
+.env*

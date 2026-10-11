@@ -1,0 +1,1574 @@
+{
+  "format": 1,
+  "media": [
+    {
+      "id": "231502ec-0be7-4cd0-8110-eafd451af09c",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/01-meadow-reverie.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 290054,
+      "sha256": "e134a7f9f89933349f0138848bf0ccd863adf997322aafa1d06e2801f13008fc",
+      "alt": "草地里的红色软椅与垂柳，梦幻3D场景",
+      "caption": "Meadow reverie",
+      "credit": "Behnam Mohsenzadeh",
+      "sourceUrl": "https://unsplash.com/photos/a-red-bean-bag-chair-sitting-in-the-middle-of-a-field-of-flowers-12c3FvFjuZ8",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "95d9127a-6dc0-4225-8d80-a7a76c2a13ef",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/02-green-signal.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 270788,
+      "sha256": "fbf81e8925d6b8054578158fc409d0252f6ca3a233a94c8fa51aafd931cf3b0d",
+      "alt": "黑底荧光绿立方体阵列，数字几何艺术",
+      "caption": "Green signal",
+      "credit": "Logan Voss",
+      "sourceUrl": "https://unsplash.com/photos/green-and-black-geometric-abstract-design-cKPR2YgptuM",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "12b271bf-617e-4a91-8ae3-3025a59c7fe8",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/03-modern-sanctuary.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 291550,
+      "sha256": "7d84a2e1e8740c2e34d7e6964612d366d46883369607375fb99e4fdbfa0a3950",
+      "alt": "阳光下的黑色现代住宅与庭院，建筑渲染",
+      "caption": "Modern sanctuary",
+      "credit": "Salman Saqib",
+      "sourceUrl": "https://unsplash.com/photos/a-rendering-of-a-modern-house-with-a-pool-93AF-d_y8rI",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "d99f2161-06f7-47d1-8071-b42d63886161",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/04-glass-garden.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 52184,
+      "sha256": "9c11944eb7af85c6097dbf9df2a02e429ff09dddc7e2adb6a89f0f3902bb1b59",
+      "alt": "浅蓝背景上的玻璃果实与透明蝴蝶，材质艺术",
+      "caption": "Glass garden",
+      "credit": "Galina Nelyubova",
+      "sourceUrl": "https://unsplash.com/photos/a-glass-apple-with-a-butterfly-on-top-of-it-m-6dYUG36Qg",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "065a349b-2779-480e-8394-999733587ffe",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/05-solstice-dunes.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 114020,
+      "sha256": "49e01a1bf071eb7591890387581dc1d4545a979abc201addc45fe871ce95b79e",
+      "alt": "金色沙丘上漂浮的发光球体，超现实数字地景",
+      "caption": "Solstice dunes",
+      "credit": "and machines",
+      "sourceUrl": "https://unsplash.com/photos/a-desert-landscape-with-the-sun-setting-vUn5GH6B7Tw",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "9a964a86-58e4-4e14-8465-652d6c8c3d61",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/06-violet-drift.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 52184,
+      "sha256": "f7ea3b671e4de3911c3f29e9b01207c7241abca540b3790fc88a2e5d83339c9d",
+      "alt": "浅紫空间里的透明水母形态，3D玻璃艺术",
+      "caption": "Violet drift",
+      "credit": "Muriel Liu",
+      "sourceUrl": "https://unsplash.com/photos/a-bunch-of-flowers-that-are-floating-in-the-air-mBwE6iko8gU",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "b0e605cb-0a41-48a0-8019-a7b3fdd84360",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/07-prismatic-flow.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 104720,
+      "sha256": "b11cd28119e38987f1559e8a6d706e4dd91e984e194a87827e88d4a1c1f5cf2f",
+      "alt": "黑底粉紫蓝层叠丝带，流动抽象雕塑",
+      "caption": "Prismatic flow",
+      "credit": "Milad Fakurian",
+      "sourceUrl": "https://unsplash.com/photos/a-close-up-of-a-colorful-object-on-a-black-background-KLnyXKDpcKo",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "80298ffd-a6e9-41a2-8776-86843ef05b60",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/08-coral-world.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 80580,
+      "sha256": "69cc904e26f50a2a4b852a832451de744e4757333e906b2692e599bf16109105",
+      "alt": "低多边形珊瑚礁里的太空探索者，趣味3D场景",
+      "caption": "Coral world",
+      "credit": "A.Rahmat MN",
+      "sourceUrl": "https://unsplash.com/photos/astronaut-exploring-a-colorful-coral-reef-underwater-GvBSHL3XztA",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "13a39704-9bf6-423e-8c02-84be8d0839c5",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/09-midnight-outpost.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 38776,
+      "sha256": "dae942f1d4157bdf19f8625284a9cc2d6f51b88f76113b6bb9d6fcf80a0d2691",
+      "alt": "行星下的飞船与微光补给站，电影感科幻场景",
+      "caption": "Midnight outpost",
+      "credit": "Vadim Sadovski",
+      "sourceUrl": "https://unsplash.com/photos/astronaut-at-a-dimly-lit-alien-gas-station-MDDQ-SE6Azg",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "267e3540-3ee4-48a1-8c97-6daa0453116a",
+      "kind": "Image",
+      "mimeType": "image/webp",
+      "designPath": "/assets/gallery/10-golden-orbit.webp",
+      "width": 1240,
+      "height": 800,
+      "durationMs": null,
+      "byteSize": 152974,
+      "sha256": "92ff45876f2548f44779ea9d81841c3cd15638fb5582707727de2a4819e60518",
+      "alt": "黑底金色环形金属纹理，流动几何造型",
+      "caption": "Golden orbit",
+      "credit": "Jon Handley",
+      "sourceUrl": "https://unsplash.com/photos/a-golden-object-with-a-black-background-1Fxa9bOWdv0",
+      "licenseName": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license"
+    },
+    {
+      "id": "ad92d880-803c-4d30-8c0d-99422523f90b",
+      "kind": "Image",
+      "mimeType": "image/png",
+      "designPath": "/assets/network-fibers.png",
+      "width": 1536,
+      "height": 1024,
+      "durationMs": null,
+      "byteSize": 1997426,
+      "sha256": "3c93f9930e1174c8a517989c1a16dd6289cda060a6c02d7e25f6106ff06e7625",
+      "alt": "示例素材",
+      "caption": "",
+      "credit": "",
+      "sourceUrl": "",
+      "licenseName": "见 THIRD_PARTY_ASSETS.md",
+      "licenseUrl": ""
+    },
+    {
+      "id": "74dc9c31-8fed-47a4-885b-6630ed99c3be",
+      "kind": "Image",
+      "mimeType": "image/png",
+      "designPath": "/assets/sculptural-glass.png",
+      "width": 1536,
+      "height": 1024,
+      "durationMs": null,
+      "byteSize": 2086484,
+      "sha256": "b3a1003e004dfedf419b57218f9a9704c30fb6ac03d1f6175dc50b5840afe23d",
+      "alt": "示例素材",
+      "caption": "",
+      "credit": "",
+      "sourceUrl": "",
+      "licenseName": "见 THIRD_PARTY_ASSETS.md",
+      "licenseUrl": ""
+    },
+    {
+      "id": "ba1c892a-9ad3-4e21-858b-0c5e818d8087",
+      "kind": "Image",
+      "mimeType": "image/png",
+      "designPath": "/assets/life-notes.png",
+      "width": 1122,
+      "height": 1402,
+      "durationMs": null,
+      "byteSize": 2045727,
+      "sha256": "a9d455a050d67c8b491c2d97bd24a436e26437bbe59baf878079b0b932baa188",
+      "alt": "示例素材",
+      "caption": "",
+      "credit": "",
+      "sourceUrl": "",
+      "licenseName": "见 THIRD_PARTY_ASSETS.md",
+      "licenseUrl": ""
+    },
+    {
+      "id": "aa0d4852-f1b1-4d1d-875b-025f961be5f6",
+      "kind": "Image",
+      "mimeType": "image/jpeg",
+      "designPath": "/assets/cinema-poster.jpg",
+      "width": 1280,
+      "height": 720,
+      "durationMs": null,
+      "byteSize": 34539,
+      "sha256": "7734b5995d1013c74514c3ff2871dc34203e1c0f4cb4c5c00f21d5f26806b2a0",
+      "alt": "示例素材",
+      "caption": "",
+      "credit": "",
+      "sourceUrl": "",
+      "licenseName": "见 THIRD_PARTY_ASSETS.md",
+      "licenseUrl": ""
+    },
+    {
+      "id": "e6165baa-3d2c-49e6-803f-c1e6850fd6c9",
+      "kind": "Video",
+      "mimeType": "video/mp4",
+      "designPath": "/assets/cinema-loop.mp4",
+      "width": 1280,
+      "height": 720,
+      "durationMs": 5000,
+      "byteSize": 2373574,
+      "sha256": "e86f9057fd951631a0330ff9cc8ce020c06b00ee4e2337789a9f61a04ebd45f5",
+      "alt": "示例素材",
+      "caption": "",
+      "credit": "",
+      "sourceUrl": "",
+      "licenseName": "见 THIRD_PARTY_ASSETS.md",
+      "licenseUrl": ""
+    }
+  ],
+  "articles": [
+    {
+      "id": "98f4340e-fd8a-458e-85ac-e6a5bb969c87",
+      "slug": "understand-the-code",
+      "kind": "Article",
+      "title": "从“能运行”，到真正理解代码",
+      "summary": "一次功能实现之后，如何通过阅读、调试和复盘，把 AI 写出的代码变成自己的经验。",
+      "intro": "功能可以运行，是一个开始。这篇示例讨论如何把一次实现变成一次学习：先理解代码的边界，再用观察和验证建立自己的判断。",
+      "columnSlug": "frontend",
+      "coverMediaId": "ad92d880-803c-4d30-8c0d-99422523f90b",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "eafe895e-b811-4e6e-8d06-463590b2ef81"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "先沿着一次操作走一遍"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "打开一段陌生代码，先不急着逐行翻译。选择一个具体操作，例如点击“下一篇”，从事件入口开始，找到它读取的状态、调用的函数，以及最后改变的页面内容。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "可以画一条很短的路径：输入是什么，状态在哪里，结果在哪里出现。遇到不理解的函数，先记下它负责什么，再继续沿这条路径读。这样比同时追踪所有分支更容易建立整体印象。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "a12dd3a7-fd32-43a4-82eb-34d91a9be205"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "用小问题验证理解"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "给自己提出几个可以观察的问题：如果列表为空会怎样？连续点击两次，状态是否一致？离开页面后，计时器还在运行吗？通过日志、断点或小范围测试，把猜测和实际行为放在一起比较。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "当结果与预期不同，先缩小问题，再修改代码。请 AI 解释一个函数时，也可以要求它说明输入、输出与边界条件，然后亲自检查这些解释是否成立。"
+              }
+            ]
+          },
+          {
+            "type": "blockquote",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "“我知道这一行做什么”和“我知道为什么需要这一行”，是两种不同的理解。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "c97ace4c-8fef-4cee-8fa0-f3c9f52aab18"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "把过程留下来"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "完成之后，写下一小段复盘：最初的问题、关键选择、遇到的边界，以及现在仍不确定的地方。再尝试不看原解释，用自己的话讲一遍。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "这篇文章是阅读样式与内容组织的示例，不对应作者某次真实项目经历。方法是否适合，还需要在具体任务中检验。"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "8405b448-2bf4-4669-8b85-bffad9ad7249",
+      "slug": "connect-the-notes",
+      "kind": "Article",
+      "title": "把零散笔记，整理成知识地图",
+      "summary": "用分类、章节与问题之间的联系，让记录不只是保存下来，也能在需要时重新找到。",
+      "intro": "整理笔记不必从一套庞大的目录开始。这个示例从几个能重新找到答案的入口出发，让一条条记录逐渐形成联系。",
+      "columnSlug": "learning",
+      "coverMediaId": "74dc9c31-8fed-47a4-885b-6630ed99c3be",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "923fe539-66c6-4d93-83e1-1af776cd4b05"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "给每条记录一个入口"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "一条笔记可以很短，但标题最好能回答：什么时候会需要它？与其只写“学习记录”，不如写下当时正在解决的问题，让未来的自己更容易识别。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "先保留少量清晰的分类，例如前端、计算机基础和学习方法。分类承担导航的作用，不必把每一种情况都预先安排好。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "1e5fac86-7454-44fe-829b-e85eea63d308"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "连接问题，而不只是分类"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "当几条记录开始讨论同一个主题，可以整理成章节。章节顺序可以沿着理解过程展开：先是为什么，再是如何工作，最后是常见边界与实际例子。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "在正文中补充相关笔记的联系，比重复复制整段内容更有帮助。一条链接旁边写明关联原因，例如“这里继续讨论状态变化”，读者就知道接下来能看到什么。"
+              }
+            ]
+          },
+          {
+            "type": "blockquote",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "目录帮助找到入口，联系帮助理解入口之间的关系。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "7187f067-5eb3-4279-8974-1acf7342ba78"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "为下次回来留下线索"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "每篇结尾保留三个简短问题：已经理解了什么，还有什么不确定，下一步从哪里开始。资料来源、例子和未解决的问题，也都可以成为重新进入主题的线索。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "这是一篇知识整理方法的示例。目录可以随着内容生长调整，不需要一次设计成永远不变的结构。"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "4fd7b830-4411-45f5-8d07-e8f30de770bd",
+      "slug": "notice-the-everyday",
+      "kind": "Life",
+      "title": "在普通的一天里，留下一点观察",
+      "summary": "记录工作之外的小事、想法和感受，不急着得出结论，让日常也有值得回看的片段。",
+      "intro": "有些文字不承担解释问题的任务，只是为一个细节留出位置。这篇随记示例谈谈如何从日常观察开始记录。",
+      "columnSlug": "everyday",
+      "coverMediaId": "ba1c892a-9ad3-4e21-858b-0c5e818d8087",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "9368a7d2-1e01-4f64-8e33-27d2f25cd4d7"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "先写看见了什么"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "可以从一个具体细节开始：一页书上的句子、一种光线，或者一件平时没有注意的小事。先把它写清楚，不急着把它变成道理。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "具体的描述能为记忆留下入口。比起“今天不错”，写下是什么让这个片刻与其他时候不同，往往更容易在以后重新想起。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "b8192353-a398-4b4f-87ac-9a1f2b1a47cf"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "给感受一点空间"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "接着写一句当时想到的内容。它可以是一个疑问、一点感受，或与另一段阅读产生的联系。文字不需要完整，也不必为了篇幅添上没有发生的情节。"
+              }
+            ]
+          },
+          {
+            "type": "blockquote",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "记录可以短一点，观察可以具体一点。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "2348f998-7442-4257-8d85-959674f9607a"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "允许文字暂时没有结论"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "最后可以留下一句未完成的问题。下一次重读时，再看看想法有没有变化。日常记录的价值，也可以只是保存一个看待事物的角度。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "以上是用于展示随记版式的示例文字，不是对作者真实生活事件的陈述。"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "d6f6d6d3-d9b3-4983-88f9-0b8999fc4423",
+      "slug": "small-motion",
+      "kind": "Article",
+      "title": "让界面动起来，也让它安静下来",
+      "summary": "从指针到人物姿态，聊聊动效、注意力，以及交互的分寸。",
+      "intro": "有趣的交互可以是一句轻轻的问候。更重要的是，读者开始阅读时，它知道什么时候安静下来。",
+      "columnSlug": "frontend",
+      "coverMediaId": "aa0d4852-f1b1-4d1d-875b-025f961be5f6",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "2be23c58-5f15-45fd-8279-d0663036dd9f"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "动效，先回答为什么"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "这个示例把交互留在首页的角色附近：目光、头部和上身跟随指针，离开后回到自然姿态。正文保持稳定，不追着鼠标跑。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "动效的目的，是让页面有回应。它不需要在每一个角落都证明自己的存在。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "a3ce0b61-06cd-4398-8d7b-2bd5c7be5e1e"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "从指针到目光"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "先把指针与眼睛中心之间的距离转成一个方向，再限制瞳孔的移动幅度。最后，用逐帧插值让转向稍微柔和一些。"
+              }
+            ]
+          },
+          {
+            "type": "codeBlock",
+            "attrs": {
+              "language": "plaintext"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "const dx = pointer.x - eye.centerX;\nconst dy = pointer.y - eye.centerY;\nconst distance = Math.hypot(dx, dy) || 1;\nconst amount = Math.min(distance / 240, 1);\n\npupil.x = (dx / distance) * 3 * amount;\npupil.y = (dy / distance) * 2 * amount;"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "这里的数值只是起点。角色的眼睛尺寸、屏幕大小和素材边缘，都会影响最终感受。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "008f0747-f4e2-4c84-82ba-a991a538025b"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "给阅读留一点安静"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "当角色离开屏幕，就暂停逐帧更新；当设备没有精确指针，可以用方向按钮调整朝向。当读者开启“减少动态效果”，让角色静静站好，也是一种体贴。"
+              }
+            ]
+          },
+          {
+            "type": "blockquote",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "好的交互既包含“发生什么”，也包含“什么时候不发生”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "721c9525-ade2-4a89-83d3-43ef25cf68b9"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "一段小小的演示"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "下面是这个网站使用的原创循环场景视频。它由逐帧渲染的曲面与灯光组成，播放器支持暂停、进度控制和移动端全屏。"
+              }
+            ]
+          },
+          {
+            "type": "video",
+            "attrs": {
+              "mediaId": "e6165baa-3d2c-49e6-803f-c1e6850fd6c9",
+              "posterMediaId": null,
+              "caption": "原创场景视频 · 示例"
+            }
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "延伸阅读："
+              },
+              {
+                "type": "text",
+                "text": "MDN：prefers-reduced-motion",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "。"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "9f5c47e3-8b17-4f99-842f-29f1c473c86f",
+      "slug": "io-multiplexing",
+      "kind": "Article",
+      "title": "I/O 多路复用：从等待到事件",
+      "summary": "把 select、poll 和 epoll 放回同一个问题里：如何管理多个连接的等待？",
+      "intro": "多个连接同时存在时，程序未必需要给每个连接安排一个阻塞等待的线程。这篇示例笔记从“就绪通知”开始理解 I/O 多路复用。",
+      "columnSlug": "computer-science",
+      "coverMediaId": "ad92d880-803c-4d30-8c0d-99422523f90b",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "80cfa3e7-f28d-4e4d-8644-36b652230aff"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "为什么要关注等待"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "网络程序通常需要等待连接上的数据。I/O 多路复用让程序通过一次等待，了解多个文件描述符中的哪些已经满足感兴趣的条件。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "select、poll 和 epoll 都可以服务于这个目标，但接口和内部管理方式并不相同。这里先建立直观模型，而不把它们简化成绝对的性能排名。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "b24d6d33-736e-4d56-84a4-b17bc9c64810"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "就绪，不是读取完成"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "收到可读事件，意味着现在适合尝试读取。实际读取仍由应用调用完成；程序还需要正确处理非阻塞读写、连接关闭与错误。"
+              }
+            ]
+          },
+          {
+            "type": "table",
+            "content": [
+              {
+                "type": "tableRow",
+                "content": [
+                  {
+                    "type": "tableCell",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "注册关注文件描述符"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "等待就绪事件"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "tableCell",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "type": "text",
+                            "text": "处理实际 I/O"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "概念示意：通知与实际处理是不同步骤。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "503ce33b-b038-4d7d-8755-b0094012c89a"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "认识 epoll 的两份列表"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "Linux 文档用 interest list 与 ready list 描述 epoll：前者记录关注的文件描述符，后者对应已经就绪、可供应用获取的事件。"
+              }
+            ]
+          },
+          {
+            "type": "codeBlock",
+            "attrs": {
+              "language": "plaintext"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "// 省略错误处理，仅演示调用顺序\nint epfd = epoll_create1(0);\n\nepoll_ctl(epfd, EPOLL_CTL_ADD, fd, &event);\nint count = epoll_wait(epfd, events, max_events, -1);\n\n// 根据返回的事件，执行相应的读写操作"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "00c25d63-01a7-4f95-8741-39a93ae1ef46"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "水平触发与边缘触发"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "水平触发（默认）会在条件仍成立时继续通知。边缘触发关注就绪状态的变化，使用时通常需要非阻塞文件描述符，并持续读写直到返回 EAGAIN，以避免遗漏后续处理机会。"
+              }
+            ]
+          },
+          {
+            "type": "blockquote",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "不要把“收到了事件”等同于“已经取走了全部数据”。"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "a3a6e0df-57e9-43ae-868b-6b8f298d34c6"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "把概念连起来"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "先理解“注册、等待、处理”的分工，再去比较各个接口如何维护集合、返回事件，学习会更容易形成结构。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "技术依据："
+              },
+              {
+                "type": "text",
+                "text": "Linux man-pages：epoll(7)",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://man7.org/linux/man-pages/man7/epoll.7.html"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "。本文是简短示例笔记，实际使用应结合接口文档和完整错误处理。"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "632b668e-a9f5-4dd4-806d-51705b66de16",
+      "slug": "notes-as-map",
+      "kind": "Article",
+      "title": "让笔记成为地图，而不只是仓库",
+      "summary": "给知识一个目录，给问题一个入口，再给每次理解留下一点线索。",
+      "intro": "把所有东西都保存下来，并不一定等于真正理解。这个示例尝试用问题、章节与连接，把零散记录变得更容易重访。",
+      "columnSlug": "learning",
+      "coverMediaId": "74dc9c31-8fed-47a4-885b-6630ed99c3be",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "1f5087db-919c-4d5c-823c-7f507d3fcce8"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "从问题开始"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "写笔记前，可以先用一句话记下：我到底想解决什么问题？标题不必概括整门学科，只要能让未来的自己知道为什么点进来。"
+              }
+            ]
+          },
+          {
+            "type": "blockquote",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "比“网络知识整理”更具体一点：一个程序如何同时等待很多连接？"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "520cdb56-3bf8-4b19-8aab-6aad62781a96"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "让目录保持简单"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "第一层放主题，第二层放问题。暂时没有内容的章节不必先摆满；一篇完整的小文章，比十个空标题更有用。"
+              }
+            ]
+          },
+          {
+            "type": "bulletList",
+            "content": [
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "文章保存一次清晰的解释。"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "知识库把相关解释组织成路径。"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "listItem",
+                "content": [
+                  {
+                    "type": "paragraph",
+                    "content": [
+                      {
+                        "type": "text",
+                        "text": "随记留下还没想透的念头。"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "398c8650-e136-4e5b-8673-45f6b0f5e4fd"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "为下一次重访留线索"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "每篇笔记结尾补上一点上下文：用到了哪些资料，还有什么不确定，下一次该从哪里接着看。这样，重新进入一个主题时，不必从零开始。"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "c402c344-e37b-490e-8589-78b40eff3919",
+      "slug": "css-variables",
+      "kind": "Article",
+      "title": "用 CSS 变量，收好一个网站的颜色",
+      "summary": "把散落的色值整理成小小的一组约定，让页面修改变得更从容。",
+      "intro": "一个页面不需要很多颜色。先给颜色命名，再让它们各司其职，是一个容易开始的整理方式。",
+      "columnSlug": "frontend",
+      "coverMediaId": "74dc9c31-8fed-47a4-885b-6630ed99c3be",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "66cf5513-b374-42be-82e7-fe7b1791b7a6"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "先定义角色"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "比起从几十个色值开始，不妨先划分背景、正文、辅助文字、边界和强调色。这些名字描述用途，也让后续调整更容易理解。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "7af0b3e4-7c35-420f-8bef-69cc542392bd"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "把约定写进变量"
+              }
+            ]
+          },
+          {
+            "type": "codeBlock",
+            "attrs": {
+              "language": "plaintext"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": ":root {\n  --sky: #eaf5ff;\n  --ink: #20324a;\n  --muted: #65778c;\n  --accent: #2561b7;\n}\n\n.article-title { color: var(--ink); }\na { color: var(--accent); }"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "先让一个组件使用这组变量，再逐步扩展。没有必要一次把所有细节都做成配置。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "3426125b-f109-44bb-8ab5-d64b07e07fe5"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "最后检查可读性"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "浅色可以让页面轻盈，但正文仍然需要清晰的对比。不要只靠颜色区分当前状态，也可以加入文字、边框或下划线。"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "延伸阅读："
+              },
+              {
+                "type": "text",
+                "text": "MDN：CSS 自定义属性",
+                "marks": [
+                  {
+                    "type": "link",
+                    "attrs": {
+                      "href": "https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "text",
+                "text": "。"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "827f4daf-caf9-4e3c-8fed-f4e65eda55de",
+      "slug": "first-notes",
+      "kind": "Life",
+      "title": "给普通的一天，留一个小小的空白",
+      "summary": "有些记录不需要完整的结论，只要留下当时认真看过的一点细节。",
+      "intro": "这是一篇生活随记的示例。这里可以安放日常观察、阅读碎片，以及还没有长成文章的想法。",
+      "columnSlug": "everyday",
+      "coverMediaId": "ba1c892a-9ad3-4e21-858b-0c5e818d8087",
+      "content": {
+        "type": "doc",
+        "content": [
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "5e0cf7bd-1dfa-4831-888b-0cf6dedcdd22"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "把速度放慢一点"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "一段光线，一页书，一句忽然想记下的话。生活随记可以比文章更轻：不必解释所有背景，也不必急着得出结论。"
+              }
+            ]
+          },
+          {
+            "type": "heading",
+            "attrs": {
+              "level": 2,
+              "id": "70ce871f-8a3d-4fb4-89bc-3c3ace6547ce"
+            },
+            "content": [
+              {
+                "type": "text",
+                "text": "留下一小段记录"
+              }
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "text",
+                "text": "如果只写三句话，第一句记录看见的，第二句记录想到的，第三句留给下次。短一点，也可以完整。"
+              }
+            ]
+          },
+          {
+            "type": "blockquote",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "type": "text",
+                    "text": "示例文字，用于预览随记的阅读样式。它不是作者真实经历。"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "columns": [
+    {
+      "id": "1a09f442-a890-487f-88b2-e36237ff86ad",
+      "name": "前端开发",
+      "intro": "从代码到界面，理解每一次交互如何发生。",
+      "articleIds": [
+        "understand-the-code",
+        "small-motion",
+        "css-variables"
+      ],
+      "images": [
+        1,
+        6,
+        9
+      ],
+      "order": 1,
+      "imageIds": [
+        "95d9127a-6dc0-4225-8d80-a7a76c2a13ef",
+        "b0e605cb-0a41-48a0-8019-a7b3fdd84360",
+        "267e3540-3ee4-48a1-8c97-6daa0453116a"
+      ],
+      "slug": "frontend"
+    },
+    {
+      "id": "4099e0f7-f212-4a31-8ee7-ca82f7cd4f36",
+      "name": "计算机基础",
+      "intro": "沿着一个个问题，读懂程序背后的工作方式。",
+      "articleIds": [
+        "io-multiplexing"
+      ],
+      "images": [
+        7,
+        4,
+        8
+      ],
+      "order": 2,
+      "imageIds": [
+        "80298ffd-a6e9-41a2-8776-86843ef05b60",
+        "065a349b-2779-480e-8394-999733587ffe",
+        "13a39704-9bf6-423e-8c02-84be8d0839c5"
+      ],
+      "slug": "computer-science"
+    },
+    {
+      "id": "f0ed6618-097b-4970-8685-690866fb245d",
+      "name": "学习方法",
+      "intro": "把阅读、笔记与复盘，连成可以重访的路径。",
+      "articleIds": [
+        "connect-the-notes",
+        "notes-as-map"
+      ],
+      "images": [
+        5,
+        6,
+        3
+      ],
+      "order": 3,
+      "imageIds": [
+        "9a964a86-58e4-4e14-8465-652d6c8c3d61",
+        "b0e605cb-0a41-48a0-8019-a7b3fdd84360",
+        "d99f2161-06f7-47d1-8071-b42d63886161"
+      ],
+      "slug": "learning"
+    },
+    {
+      "id": "c61700d7-53b6-4ad9-8ec0-fb659f669de5",
+      "name": "生活随记",
+      "intro": "为细小的发现留一个位置，让日常有迹可循。",
+      "articleIds": [
+        "notice-the-everyday",
+        "first-notes"
+      ],
+      "images": [
+        2,
+        4,
+        0
+      ],
+      "order": 4,
+      "imageIds": [
+        "12b271bf-617e-4a91-8ae3-3025a59c7fe8",
+        "065a349b-2779-480e-8394-999733587ffe",
+        "231502ec-0be7-4cd0-8110-eafd451af09c"
+      ],
+      "slug": "everyday"
+    }
+  ],
+  "projects": [
+    {
+      "id": "b84dd3a8-6434-4ef0-8963-c36b3d5046cf",
+      "title": "蓝色个人小站",
+      "type": "前端原型",
+      "desc": "把文章、知识与生活，放进一个轻盈、可阅读的小空间。",
+      "tags": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "art": "blog",
+      "body": "这是一个纯前端个人博客示例项目。首页以三维毛毡人物与大字为中心，指针驱动人物的目光与姿态。文章按主题筛选，知识库按章节阅读。",
+      "details": [
+        "六个栏目，共用一套蓝白视觉语言",
+        "三维人物、连续目光与姿态跟随",
+        "响应式布局、键盘导航和减少动态效果支持"
+      ],
+      "note": "当前原型的内容来自本地文件，没有后台、账号、发布管理或服务器保存。",
+      "slug": "personal-blog",
+      "coverMediaId": "74dc9c31-8fed-47a4-885b-6630ed99c3be",
+      "position": 1
+    },
+    {
+      "id": "9e3242f2-98ef-4278-8f65-dc75b8054799",
+      "title": "一份有结构的知识笔记",
+      "type": "内容设计示例",
+      "desc": "用章节目录与页内索引，把一篇篇笔记连成一条学习路径。",
+      "tags": [
+        "知识整理",
+        "阅读体验"
+      ],
+      "art": "notes",
+      "body": "这个示例展示如何组织一个持续增长的专题知识库。章节目录保留主题之间的关系，页内目录帮助读者定位当前问题。",
+      "details": [
+        "按主题展开或收起章节",
+        "文章内跳转与阅读进度高亮",
+        "小屏幕独立展开章节与页内目录"
+      ],
+      "note": "这是展示内容结构的示例项目，不代表已完成的个人履历或研究成果。",
+      "slug": "knowledge-notebook",
+      "coverMediaId": "ad92d880-803c-4d30-8c0d-99422523f90b",
+      "position": 2
+    }
+  ],
+  "chapters": [
+    [
+      "01",
+      "前端与交互",
+      [
+        [
+          "small-motion",
+          "让界面动起来"
+        ],
+        [
+          "css-variables",
+          "CSS 变量与颜色"
+        ]
+      ]
+    ],
+    [
+      "02",
+      "计算机基础",
+      [
+        [
+          "io-multiplexing",
+          "I/O 多路复用"
+        ]
+      ]
+    ],
+    [
+      "03",
+      "学习与整理",
+      [
+        [
+          "notes-as-map",
+          "让笔记成为地图"
+        ]
+      ]
+    ]
+  ],
+  "settings": {
+    "homeAbout": "I’m a developer who loves turning ideas into things you can use. This is where I share what I build, what I learn, and the moments I want to remember. From code and side projects to everyday discoveries, I’m always curious about what comes next.",
+    "aboutTitle": "技术，知识，还有生活。",
+    "aboutText": "文章用来展开一个想法，知识库用来整理一条路径，项目用来记录一次尝试。生活随记，则留给不需要急着得出结论的瞬间。",
+    "aboutNote": "文章与项目中标注为示例的内容用于展示，不代表作者真实经历。",
+    "galleryIds": [
+      "231502ec-0be7-4cd0-8110-eafd451af09c",
+      "95d9127a-6dc0-4225-8d80-a7a76c2a13ef",
+      "12b271bf-617e-4a91-8ae3-3025a59c7fe8",
+      "d99f2161-06f7-47d1-8071-b42d63886161",
+      "065a349b-2779-480e-8394-999733587ffe",
+      "9a964a86-58e4-4e14-8465-652d6c8c3d61",
+      "b0e605cb-0a41-48a0-8019-a7b3fdd84360",
+      "80298ffd-a6e9-41a2-8776-86843ef05b60",
+      "13a39704-9bf6-423e-8c02-84be8d0839c5",
+      "267e3540-3ee4-48a1-8c97-6daa0453116a"
+    ],
+    "featuredIds": [
+      "98f4340e-fd8a-458e-85ac-e6a5bb969c87",
+      "8405b448-2bf4-4669-8b85-bffad9ad7249",
+      "4fd7b830-4411-45f5-8d07-e8f30de770bd"
+    ],
+    "topics": [
+      "前端开发",
+      "计算机基础",
+      "学习方法",
+      "生活随记"
+    ]
+  }
+}

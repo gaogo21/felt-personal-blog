@@ -1,0 +1,616 @@
+[
+  {
+    "name": "empty",
+    "input": {
+      "type": "doc",
+      "content": []
+    },
+    "normalized": {
+      "type": "doc",
+      "content": []
+    },
+    "plainText": ""
+  },
+  {
+    "name": "richBlocks",
+    "input": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2,
+            "id": "11111111-1111-4111-8111-111111111111"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "章节 é"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "链接文字",
+              "marks": [
+                {
+                  "type": "bold"
+                },
+                {
+                  "type": "link",
+                  "attrs": {
+                    "href": "https://example.com"
+                  }
+                },
+                {
+                  "type": "textColor",
+                  "attrs": {
+                    "token": "purple"
+                  }
+                },
+                {
+                  "type": "code"
+                },
+                {
+                  "type": "strike"
+                },
+                {
+                  "type": "italic"
+                }
+              ]
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "下一行😀"
+            }
+          ]
+        },
+        {
+          "type": "orderedList",
+          "attrs": {
+            "start": 9999
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "有序项"
+                    }
+                  ]
+                },
+                {
+                  "type": "bulletList",
+                  "content": [
+                    {
+                      "type": "listItem",
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "子项"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "blockquote",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "引文"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "第二段"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "horizontalRule"
+        },
+        {
+          "type": "codeBlock",
+          "attrs": {
+            "language": "unknown"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "<script>literal()</script>\nprint(\"中文\")"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "站内路径",
+              "marks": [
+                {
+                  "type": "link",
+                  "attrs": {
+                    "href": "/articles/%2E%2E/articles/example"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "normalized": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "heading",
+          "attrs": {
+            "level": 2,
+            "id": "11111111-1111-4111-8111-111111111111"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "章节 é"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "链接文字",
+              "marks": [
+                {
+                  "type": "link",
+                  "attrs": {
+                    "href": "https://example.com/"
+                  }
+                },
+                {
+                  "type": "textColor",
+                  "attrs": {
+                    "token": "purple"
+                  }
+                },
+                {
+                  "type": "bold"
+                },
+                {
+                  "type": "italic"
+                },
+                {
+                  "type": "strike"
+                },
+                {
+                  "type": "code"
+                }
+              ]
+            },
+            {
+              "type": "hardBreak"
+            },
+            {
+              "type": "text",
+              "text": "下一行😀"
+            }
+          ]
+        },
+        {
+          "type": "orderedList",
+          "attrs": {
+            "start": 9999
+          },
+          "content": [
+            {
+              "type": "listItem",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "content": [
+                    {
+                      "type": "text",
+                      "text": "有序项"
+                    }
+                  ]
+                },
+                {
+                  "type": "bulletList",
+                  "content": [
+                    {
+                      "type": "listItem",
+                      "content": [
+                        {
+                          "type": "paragraph",
+                          "content": [
+                            {
+                              "type": "text",
+                              "text": "子项"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "blockquote",
+          "content": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "引文"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "第二段"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "horizontalRule"
+        },
+        {
+          "type": "codeBlock",
+          "attrs": {
+            "language": "plaintext"
+          },
+          "content": [
+            {
+              "type": "text",
+              "text": "<script>literal()</script>\nprint(\"中文\")"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "text": "站内路径",
+              "marks": [
+                {
+                  "type": "link",
+                  "attrs": {
+                    "href": "/articles/example"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "plainText": "章节 é\n链接文字\n下一行😀\n有序项\n子项\n引文\n第二段\n\n<script>literal()</script>\nprint(\"中文\")\n站内路径"
+  },
+  {
+    "name": "basicTable",
+    "input": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "table",
+          "content": [
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableHeader",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第一列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第二列"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "数据",
+                          "marks": [
+                            {
+                              "type": "textColor",
+                              "attrs": {
+                                "token": "gold"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "说明"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "e"
+                        },
+                        {
+                          "type": "text",
+                          "text": "́",
+                          "marks": [
+                            {
+                              "type": "bold"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "normalized": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "table",
+          "content": [
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableHeader",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第一列"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableHeader",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "第二列"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "tableRow",
+              "content": [
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "数据",
+                          "marks": [
+                            {
+                              "type": "textColor",
+                              "attrs": {
+                                "token": "gold"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "说明"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "tableCell",
+                  "content": [
+                    {
+                      "type": "paragraph",
+                      "content": [
+                        {
+                          "type": "text",
+                          "text": "e"
+                        },
+                        {
+                          "type": "text",
+                          "text": "́",
+                          "marks": [
+                            {
+                              "type": "bold"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "plainText": "第一列\n第二列\n数据\n说明\né"
+  },
+  {
+    "name": "mediaPlaceholders",
+    "input": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "image",
+          "attrs": {
+            "mediaId": "22222222-2222-4222-8222-222222222222",
+            "alt": "图片替代文字",
+            "caption": "图片说明",
+            "displayMeta": {
+              "alt": "图片替代文字",
+              "caption": "图片说明",
+              "credit": "作者",
+              "sourceUrl": "https://example.com",
+              "licenseName": "CC BY",
+              "licenseUrl": "https://example.com/license"
+            }
+          }
+        },
+        {
+          "type": "video",
+          "attrs": {
+            "mediaId": "33333333-3333-4333-8333-333333333333",
+            "posterMediaId": "22222222-2222-4222-8222-222222222222",
+            "caption": "视频说明"
+          }
+        },
+        {
+          "type": "video",
+          "attrs": {
+            "mediaId": "33333333-3333-4333-8333-333333333333",
+            "posterMediaId": null,
+            "caption": ""
+          }
+        }
+      ]
+    },
+    "normalized": {
+      "type": "doc",
+      "content": [
+        {
+          "type": "image",
+          "attrs": {
+            "mediaId": "22222222-2222-4222-8222-222222222222",
+            "alt": "图片替代文字",
+            "caption": "图片说明",
+            "displayMeta": {
+              "alt": "图片替代文字",
+              "caption": "图片说明",
+              "credit": "作者",
+              "sourceUrl": "https://example.com/",
+              "licenseName": "CC BY",
+              "licenseUrl": "https://example.com/license"
+            }
+          }
+        },
+        {
+          "type": "video",
+          "attrs": {
+            "mediaId": "33333333-3333-4333-8333-333333333333",
+            "posterMediaId": "22222222-2222-4222-8222-222222222222",
+            "caption": "视频说明"
+          }
+        },
+        {
+          "type": "video",
+          "attrs": {
+            "mediaId": "33333333-3333-4333-8333-333333333333",
+            "posterMediaId": null,
+            "caption": ""
+          }
+        }
+      ]
+    },
+    "plainText": "图片说明\n视频说明\n"
+  }
+]

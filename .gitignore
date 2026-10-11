@@ -25,3 +25,14 @@ Thumbs.db
 *.tmp
 __pycache__/
 *.pyc
+
+# Backend, editor and local verification outputs
+**/bin/
+**/obj/
+**/node_modules/
+frontend/editor/generated/
+src/Blog.Web/wwwroot/js/admin/editor.bundle.js
+runtime/
+output/
+.playwright-cli/
+artifacts/
