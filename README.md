@@ -1,68 +1,33 @@
-# Always Curious
+# 后端历史恢复归档（不完整）
 
-一个使用原生 HTML、CSS 和 JavaScript 编写的个人网站前端原型。没有 React、Vue、Next.js 或 TypeScript，也不需要 npm 依赖。文章、专栏和项目内容目前均为明确标注的示例。
+此 recovery/backend-records-20261011 分支保存 felt-personal-blog 后端的**压缩恢复档案**。它不是展开后的源码仓库，不是最终后端，也不能构建或部署。
 
-## 本地查看
+原 [main 分支](https://github.com/gaogo21/felt-personal-blog/tree/main) 的前端历史继续保留；本分支的恢复材料不替换原前端历史。
 
-安装 Python 3 后，在仓库根目录运行：
+## 下载与核对
 
-```sh
-python3 -m http.server 8080 --directory dist
-```
+- [felt-backend-records-20261011.zip](felt-backend-records-20261011.zip)：含完整历史目录结构的恢复归档，378 个文件，解压后共 18,770,817 字节。
+- [PUBLICATION-MANIFEST.json](PUBLICATION-MANIFEST.json)：逐文件原恢复 SHA-256 与公开副本 SHA-256 对照，以及本 ZIP 的信息。
+- [CHECKSUMS.txt](CHECKSUMS.txt)：本目录 ZIP、README 与清单的 SHA-256。
 
-浏览器打开 `http://localhost:8080`。
+ZIP SHA-256：`49ad846992c95282a8cdd369e4873db9eb39dad0bcc4b7d398490d05b3d9717b`。
 
-`dist/` 已包含可直接运行的网页源文件和本地资源，无需先构建。请通过 HTTP 静态服务查看，不要直接双击 `index.html`；JavaScript 模块和以 `/assets/` 开头的路径依赖网站根目录。
+解压目录为 felt-backend-records-20261011/，内含 snapshots/、fragments/、patch-records/、inventory.json、known-paths.csv、缺失清单及说明。不同历史版本分开保存，没有拼成一个声称可构建的项目。
 
-## 页面与交互
+## 已恢复与仍缺失
 
-- 首页：三张毛毡人物图片每 3 秒轮换；单屏双排艺术作品墙自动反向移动；ABOUT ME 自我介绍；ARTICLE 星空指针揭露；COLUMNS 专栏叠板。
-- 文章：分类筛选、文章详情、章节目录和前后篇导航。
-- 专栏：四个专栏目录，文章数从关联数据计算。
-- 知识库、项目、生活随记和关于页面。
-- 窄屏布局、键盘操作、暂停控件及减少动态效果的静态回退。
+已知 710 个去重路径，其中 182 个至少有完整历史内容、38 个只有片段、490 个仅有路径或哈希。完整历史内容包括 77 个产品 C# 路径；35 个完整文件与保留的最终源码哈希相符，但产品 C# 最终版本验证仍为 0 个。
 
-人物舞台是二维图片景深轮播，不是实时三维模型。艺术图和项目封面为示意素材，不代表作者的商业项目或摄影成果。
+完整 BlogDbContext、EF Core 模型与迁移链、若干服务和 PostgreSQL 实现、完整测试树仍缺失。历史阶段及审查前后版本混杂，部分补丁没有基础文件。没有补写缺失实现，也没有对该恢复归档执行构建、数据库迁移、上线或部署验收。
 
-## 目录
+目标原源码提交 5f6f048a3e4c77c5ef86638bcff280badc4f19ab 与目标原发布提交 f550a60fe54a9e7b0f108ad9fdbb8e98a51d1f5a 的完整 Git 对象和文件树仍不可用。不能由本归档精确还原此前报告的 270 个 src 文件或 1,473 个发布树文件。
 
-```text
-dist/
-  index.html           页面入口与首页静态回退
-  app.js               示例内容、页面渲染和 hash 路由
-  style.css            基础样式及内页
-  collectible.*        毛毡人物轮播
-  gallery.*            双排作品墙和图片查看器
-  about-stage.*        自我介绍区域
-  article-index.css    文章索引排版
-  article-sky.js       星空指针揭露
-  columns.*            专栏叠板与响应式布局
-  assets/              图片、视频、字体及来源许可
-build-static.mjs       同步首页静态回退
-validate.mjs           路由与资源校验
-THIRD_PARTY_ASSETS.md  素材和字体说明
-```
+## 来源和脱敏范围
 
-样式和脚本未经过打包或压缩，`dist/` 在本项目中同时是可编辑源码目录和静态部署目录。路由由 `app.js` 监听 `hashchange` 实现，例如 `#/articles`、`#/article/understand-the-code`、`#/column/frontend`。
+原恢复 ZIP 的 SHA-256 为 d26858c5c1f11445bd15901832bc96a114e12e7ad98b329b65f0344cb66eacd7，原包保持不变。本归档为明确标注的 sanitized derivative（脱敏衍生副本）：仅规范化 11 份补丁文件头的绝对工作目录前缀、两份历史辅助脚本的 ROOT 路径及来源清单中的执行/输出记录标识。补丁正文与其余代码逻辑未改变。
 
-## 修改与验证
+每项字节变化均记录原恢复哈希和公开哈希；脱敏后的字节不沿用原哈希验证结论。归档内 ORIGINAL-SHA256SUMS.txt 保留原恢复校验值，SHA256SUMS.txt 校验当前公开内容。原版本、来源时间、内容范围、已知缺失和最终版本限制均保留。
 
-需要运行开发辅助脚本时，安装现代 Node.js；推荐 Node.js 20 或更新版本。脚本只使用 Node.js 内置模块，不需要 `npm install`。
+输入 ZIP 哈希、所有原 CRC、374 项原文件校验值、358 项来源内容的 SHA-256/Git blob SHA-1、51 项补丁哈希及本次输出 ZIP 的全部条目均已核验。此核验只确认材料完整保存及脱敏范围，不表示产品安全审计或功能验收通过。
 
-```sh
-node --check dist/app.js
-node build-static.mjs
-node validate.mjs
-```
-
-修改 `app.js` 中的首页结构或内容后，运行 `build-static.mjs`，让 `index.html` 的静态回退保持同步。`validate.mjs` 检查 20 个页面视图、资源引用、分类、文章目录与四个专栏的关联；动画和视觉效果仍应在浏览器中验证。
-
-这是纯前端项目，没有服务器业务逻辑、数据库、登录系统或 CMS。内容暂时通过修改前端数据维护。
-
-## 部署
-
-将 `dist/` 的内容作为网站根目录发布到普通静态服务器即可。由于脚本和资源使用根路径，若部署到 `/repository-name/` 这样的子路径，需要先统一调整资源与模块路径。仓库本身不配置或启用在线托管。
-
-## 素材与许可
-
-第三方图片和字体的作者、来源及许可文件已随资源保留，详见 [THIRD_PARTY_ASSETS.md](THIRD_PARTY_ASSETS.md)。本仓库没有给整个项目指定统一的开源许可证；公开源码不会改变各项素材原有的许可条件。
+本归档未新增整体许可证；原有许可证及资源来源记录只适用于各自范围。
