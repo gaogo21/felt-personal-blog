@@ -29,7 +29,9 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-          cache-dependency-path: frontend/editor/package-lock.json
+          cache-dependency-path: |
+            frontend/editor/package-lock.json
+            frontend/admin/package-lock.json
       - name: Install native media tools and official signatures
         run: |
           sudo apt-get update
@@ -37,6 +39,9 @@ jobs:
           sudo systemctl stop clamav-freshclam || true
           sudo freshclam
       - run: npm ci --prefix frontend/editor
+      - run: npm ci --prefix frontend/admin
+      - run: npm test --prefix frontend/admin
+      - run: npm run build --prefix frontend/admin
       - run: npm test --prefix frontend/editor
       - run: npm run build --prefix frontend/editor
       - run: node validate.mjs

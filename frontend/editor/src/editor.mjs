@@ -107,6 +107,15 @@ export function createBodyEditor(element, { content = emptyDocument(), onUpdate 
   button('删除表格', () => editor.chain().focus().deleteNode('table').run(), undefined, () => editor.isActive('table'));
   button('撤销', () => editor.chain().focus().undo().run(), undefined, () => editor.can().undo());
   button('重做', () => editor.chain().focus().redo().run(), undefined, () => editor.can().redo());
+  const more = document.createElement('details'); more.className = 'editor-more';
+  const summary = document.createElement('summary'); summary.textContent = '更多格式';
+  const advanced = document.createElement('div'); advanced.className = 'toolbar-advanced';
+  more.append(summary, advanced);
+  const basic = new Set(['正文', '二级标题', '三级标题', '加粗', '斜体', '撤销', '重做']);
+  for (const control of [...toolbar.children]) {
+    if (control.tagName !== 'BUTTON' || !basic.has(control.textContent)) advanced.append(control);
+  }
+  toolbar.append(more);
   function updateControls() {
     if (!editor || destroyed) return;
     for (const [control, canUse] of controls) control.disabled = !editor.isEditable || !canUse();

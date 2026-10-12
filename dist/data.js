@@ -100,7 +100,7 @@ export async function loadRoute(route, id, page, signal) {
   const home = await readPublic("/home", signal);
   const state = {
     articles: home.featured.map(articleData),
-    columns: home.columns.map(columnData),
+    columns: home.columns.map((column, index) => ({ ...columnData(column), order: index + 1 })),
     gallery: home.gallery.map(imageData),
     homeAbout: esc(home.homeAbout),
     projects: [],
@@ -147,6 +147,7 @@ export async function loadRoute(route, id, page, signal) {
     const data = await readPublic("/columns/" + encodeURIComponent(id), signal);
     state.articles = data.articles.map(articleData);
     const column = columnData(data.column);
+    column.order = state.columns.find(item => item.id === column.id)?.order || column.order;
     column.articleIds = state.articles.map((a) => a.id);
     state.columns = state.columns.map((c) => (c.id === column.id ? column : c));
   } else if (route === "projects")

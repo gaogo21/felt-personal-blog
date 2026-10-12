@@ -10,11 +10,19 @@ import {
   selectMedia,
   status,
   sortable,
+  pageHeading,
+  stateBadge,
+  stateLabel,
+  setDirty,
 } from "./api.js";
+import { chooseImage } from "./site.js";
+import { completeSlots, fixedSlots, columnPositions } from "./site-contract.js";
 
 export async function columnsPage() {
+  setDirty(false);
   const data = await api("/columns");
-  root.innerHTML = `<h1>专栏与排序</h1><button data-new>新建专栏</button><div class="table-scroll"><table><thead><tr><th>名称</th><th>状态</th><th>已发布文章</th><th>操作</th></tr></thead><tbody>${data.items.map((c) => `<tr><td>${esc(c.name)}<br><small>${c.slug}</small></td><td>${c.state}</td><td>${c.publishedArticleCount}</td><td><button data-edit="${c.id}">编辑</button></td></tr>`).join("")}</tbody></table></div>`;
+  const active = data.items.filter(column => column.state === "Active");
+  root.innerHTML = `${pageHeading("专栏管理", "每个专栏对应一张首页卡片，维护名称、介绍与固定的 3 张图片。", '<button type="button" data-new>新建专栏</button>')}<div class="column-card-grid">${data.items.map(c => `<article class="column-admin-card"><header><span>${c.state === "Active" ? String(active.indexOf(c) + 1).padStart(2, "0") + " / 首页专栏" : "尚未展示"}</span>${stateBadge(c.state)}</header><div class="column-thumb-mosaic">${c.images.map(image => `<img src="${esc(image.src)}" alt="${esc(image.alt)}"/>`).join("")}</div><div><h2>${esc(c.name)}</h2><p>${esc(c.introduction)}</p><div class="section-toolbar"><span class="muted">${c.publishedArticleCount} 篇已发布文章</span><button type="button" class="secondary" data-edit="${c.id}">管理专栏</button></div></div></article>`).join("") || '<p class="empty-state">还没有专栏。创建专栏并启用后会出现在首页。</p>'}</div>`;
   sortable(
     data.items,
     (x) => x.name,
@@ -42,11 +50,40 @@ async function editColumn(id) {
     ? await api("/columns/" + id)
     : { slug: "", name: "", introduction: "", imageIds: [], state: "Draft" };
   const media = await allPages("/media?state=Ready");
+  const slots = fixedSlots(c.imageIds, 3);
   let dirty = false;
-  root.innerHTML = `<button class="secondary" data-back>← 返回专栏</button><h1>${id ? "编辑" : "新建"}专栏</h1><p class="muted">启用专栏需要三张不同图片。专栏地址创建后保持固定。</p><form id="column-form">${field("专栏地址", "slug", c.slug)}${field("名称", "name", c.name)}${area("介绍", "introduction", c.introduction)}<div class="split">${[0, 1, 2].map((i) => selectMedia("封面图片 " + (i + 1), "image" + i, media, c.imageIds[i])).join("")}</div><button>保存专栏</button></form>${id ? `<div class="actions"><span class="badge">${c.state}</span>${c.state !== "Active" ? '<button data-state="activate">启用专栏</button>' : ""}${c.state !== "Archived" ? '<button class="secondary" data-state="archive">归档专栏</button>' : ""}</div>` : ""}`;
+  root.innerHTML = `<button type="button" class="secondary" data-back>← 返回专栏</button>${pageHeading(id ? "编辑专栏" : "新建专栏", "名称、介绍和 3 张不同图片填写完整后才能保存。")}<form id="column-form"><div class="column-form-layout"><div>${field("专栏地址（创建后固定）", "slug", c.slug)}${field("专栏名称", "name", c.name)}${area("专栏介绍", "introduction", c.introduction)}<p class="field-hint">介绍最多 1200 字，展示编号随首页顺序生成。</p><div class="actions"><button type="submit" id="column-save">保存专栏</button><span id="column-validation" class="muted"></span></div></div><section class="column-image-settings"><h2>专栏展示图片 <span class="count-badge" id="column-count"></span></h2><p class="muted">每张图的电脑和手机位置已标注。</p><div id="column-slots" data-validation-for="imageIds"></div><div class="column-layout-preview"><h3>电脑卡片拼图预览</h3><div class="column-thumb-mosaic" id="column-mosaic-preview"></div></div></section></div></form>${id ? `<div class="actions">${stateBadge(c.state)}${c.state !== "Active" ? '<button type="button" data-state="activate">启用专栏</button>' : ""}${c.state !== "Archived" ? '<button type="button" class="secondary" data-state="archive">归档专栏</button>' : ""}</div>` : ""}`;
   const form = root.querySelector("#column-form");
+  form.elements.namedItem("name").required = true;
+  form.elements.namedItem("introduction").required = true;
+  form.elements.namedItem("introduction").maxLength = 1200;
   if (id) form.slug.disabled = true;
-  form.addEventListener("input", () => (dirty = true));
+  function mark() { dirty = true; setDirty(true); }
+  function paint() {
+    const valid = completeSlots(slots, 3) && slots.every(id => media.some(image => image.id === id && image.kind === "Image"));
+    root.querySelector("#column-count").textContent = slots.filter(Boolean).length + " / 3";
+    const button = root.querySelector("#column-save"); button.dataset.valid = String(valid); button.disabled = !valid;
+    root.querySelector("#column-validation").textContent = valid ? "3 张图片已完整" : "请补齐 3 张不同图片";
+    root.querySelector("#column-slots").innerHTML = slots.map((imageId, index) => {
+      const image = media.find(item => item.id === imageId), position = columnPositions[index];
+      return `<article class="image-slot">${image ? `<img src="${esc(image.src)}" alt="${esc(image.alt)}"/>` : '<div class="slot-placeholder"><span>＋</span></div>'}<header><span class="slot-number">0${index + 1}</span><span>电脑：${position.desktop}<br/>手机：${position.mobile}</span></header><div class="slot-copy"><div class="slot-actions"><button type="button" class="secondary" data-image-slot="${index}">${image ? "更换图片" : "选择图片"}</button>${imageId ? `<button type="button" class="secondary" data-image-remove="${index}">移除</button>` : ""}</div></div></article>`;
+    }).join("");
+    root.querySelector("#column-mosaic-preview").innerHTML = slots.map(imageId => {
+      const image = media.find(item => item.id === imageId);
+      return image ? `<img src="${esc(image.src)}" alt=""/>` : '<div class="slot-placeholder">等待图片</div>';
+    }).join("");
+  }
+  root.querySelector("#column-slots").addEventListener("click", async e => {
+    const button = e.target.closest("button"); if (!button) return;
+    if (button.hasAttribute("data-image-remove")) slots[Number(button.dataset.imageRemove)] = null;
+    else if (button.hasAttribute("data-image-slot")) {
+      const index = Number(button.dataset.imageSlot), image = await chooseImage(media, slots.filter((id, i) => i !== index && id));
+      if (!image) return; slots[index] = image.id;
+    } else return;
+    mark(); paint();
+  });
+  form.addEventListener("input", mark);
+  paint();
   on("[data-back]", "click", async () => {
     if (dirty && !confirm("有未保存修改，确定离开？")) return;
     await columnsPage();
@@ -56,8 +93,9 @@ async function editColumn(id) {
       slug: value(form, "slug"),
       name: value(form, "name"),
       introduction: value(form, "introduction"),
-      imageIds: [0, 1, 2].map((i) => value(form, "image" + i)).filter(Boolean),
+      imageIds: slots,
     };
+    if (!completeSlots(slots, 3)) throw new Error("专栏必须恰好有 3 张不同图片。");
     const saved = await api("/columns" + (id ? "/" + id : ""), {
       method: id ? "PUT" : "POST",
       etag: c.etag,
@@ -65,6 +103,7 @@ async function editColumn(id) {
       body,
     });
     dirty = false;
+    setDirty(false);
     await editColumn(saved.id);
     status("专栏已保存。");
   });
@@ -103,9 +142,10 @@ async function editColumn(id) {
   }
 }
 export async function projectsPage() {
+  setDirty(false);
   const items = await api("/projects"),
     site = await api("/site");
-  root.innerHTML = `<h1>项目展览</h1><form id="create-project" class="card"><h2>新建项目</h2>${field("标题", "title")}${field("项目地址", "slug")}<button>创建项目草稿</button></form><table><thead><tr><th>标题</th><th>状态</th><th>操作</th></tr></thead><tbody>${items.map((p) => `<tr><td>${esc(p.draft.title)}${p.isDemo ? ' <span class="badge">示例</span>' : ""}</td><td>${p.trashed ? "回收站" : p.published ? "已发布" : "草稿"}</td><td><button data-edit="${p.id}">编辑</button></td></tr>`).join("")}</tbody></table>`;
+  root.innerHTML = `${pageHeading("项目展览", "记录从想法到作品的过程。")}<details class="create-disclosure"><summary>＋ 新建项目</summary><form id="create-project" class="card">${field("标题", "title")}${field("项目地址", "slug")}<button>创建项目草稿</button></form></details><table><thead><tr><th>标题</th><th>状态</th><th>操作</th></tr></thead><tbody>${items.map((p) => `<tr><td>${esc(p.draft.title)}${p.isDemo ? ' <span class="badge">示例</span>' : ""}</td><td>${p.trashed ? "回收站" : p.published ? "已发布" : "草稿"}</td><td><button data-edit="${p.id}">编辑</button></td></tr>`).join("")}</tbody></table>`;
   sortable(
     items,
     (x) => x.draft.title,
@@ -146,7 +186,7 @@ async function editProject(id) {
   root.innerHTML = `<button class="secondary" data-back>← 返回项目</button><h1>编辑项目</h1><p>${p.slug} · ${p.trashed ? "回收站" : p.published ? "已发布" : "草稿"}</p><form id="project-form">${field("标题", "title", d.title)}${field("项目类型", "type", d.type)}${area("摘要", "summary", d.summary)}${field("标签（用逗号分隔）", "tags", d.tags.join(","))}${selectMedia("封面图片", "coverMediaId", media, d.coverMediaId)}${area("项目正文", "body", d.body)}${area("过程与细节（每行一项）", "details", d.details.join("\n"))}${area("补充说明", "note", d.note)}<button ${p.trashed ? "disabled" : ""}>保存项目草稿</button></form><div class="actions">${p.trashed ? '<button data-state="restore">恢复为草稿</button>' : '<button data-state="publish">发布已保存内容</button>' + (p.published ? '<button class="secondary" data-state="withdraw">撤回发布</button>' : "") + '<button class="danger" data-state="trash">移入回收站</button>'}<a href="/#/project/${p.slug}" target="_blank" rel="noopener">查看公开页面 ↗</a></div>`;
   const form = root.querySelector("#project-form");
   if (p.trashed) for (const control of form.elements) control.disabled = true;
-  form.addEventListener("input", () => (dirty = true));
+  form.addEventListener("input", () => { dirty = true; setDirty(true); });
   on("[data-back]", "click", async () => {
     if (dirty && !confirm("有未保存修改，确定离开？")) return;
     await projectsPage();
@@ -170,6 +210,7 @@ async function editProject(id) {
       },
     });
     dirty = false;
+    setDirty(false);
     await editProject(id);
     status("项目草稿已保存。");
   });
@@ -187,8 +228,9 @@ async function editProject(id) {
   );
 }
 export async function knowledgePage() {
+  setDirty(false);
   const data = await api("/knowledge");
-  root.innerHTML = `<h1>知识库章节</h1><p class="muted">章节关联已有文章，正文只维护一份。只有已发布文章会出现在公开知识库中。</p><button data-new>新建章节</button><div>${data.items.map((c) => `<section class="card"><h2>${esc(c.title)}</h2><p>${c.articleIds.length} 篇关联文章</p><button data-edit="${c.id}">编辑章节与文章顺序</button></section>`).join("")}</div>`;
+  root.innerHTML = `${pageHeading("知识库章节", "关联已有文章，整理知识路径，正文只维护一份。", '<button type="button" data-new>新建章节</button>')}<div>${data.items.map((c) => `<section class="card"><h2>${esc(c.title)}</h2><p>${c.articleIds.length} 篇关联文章</p><button data-edit="${c.id}">编辑章节与文章顺序</button></section>`).join("")}</div>`;
   sortable(
     data.items,
     (x) => x.title,
@@ -220,7 +262,8 @@ async function editChapter(id) {
     (a) => a.state !== "Purged",
   );
   let chosen = [...c.articleIds];
-  root.innerHTML = `<button class="secondary" data-back>← 返回章节</button><h1>${id ? "编辑" : "新建"}章节</h1><form id="chapter-form">${field("章节名称", "title", c.title)}<label>添加文章<select id="chapter-article"><option value="">选择文章</option>${articles.map((a) => `<option value="${a.id}">${esc(a.draft?.title || a.slug)} (${a.state})</option>`).join("")}</select></label><button type="button" data-add>添加到章节</button><ul id="chapter-entries" class="sort-list"></ul><div class="actions"><button type="submit">保存章节与顺序</button>${id ? '<button type="button" class="danger" data-delete>删除章节</button>' : ""}</div></form>`;
+  let dirty = false;
+  root.innerHTML = `<button class="secondary" data-back>← 返回章节</button><h1>${id ? "编辑" : "新建"}章节</h1><form id="chapter-form">${field("章节名称", "title", c.title)}<label>添加文章<select id="chapter-article"><option value="">选择文章</option>${articles.map((a) => `<option value="${a.id}">${esc(a.draft?.title || a.slug)} (${stateLabel(a.state)})</option>`).join("")}</select></label><button type="button" data-add>添加到章节</button><ul id="chapter-entries" class="sort-list"></ul><div class="actions"><button type="submit">保存章节与顺序</button>${id ? '<button type="button" class="danger" data-delete>删除章节</button>' : ""}</div></form>`;
   function list() {
     root.querySelector("#chapter-entries").innerHTML = chosen
       .map(
@@ -232,6 +275,7 @@ async function editChapter(id) {
   root.querySelector("#chapter-entries").onclick = (e) => {
     const t = e.target.closest("button");
     if (!t) return;
+    dirty = true; setDirty(true);
     const key = Object.keys(t.dataset)[0],
       i = Number(t.dataset[key]);
     if (key === "remove") chosen.splice(i, 1);
@@ -245,11 +289,16 @@ async function editChapter(id) {
   on("[data-add]", "click", () => {
     const id = root.querySelector("#chapter-article").value;
     if (id && !chosen.includes(id)) {
+      dirty = true; setDirty(true);
       chosen.push(id);
       list();
     }
   });
-  on("[data-back]", "click", knowledgePage);
+  root.querySelector("#chapter-form").addEventListener("input", () => { dirty = true; setDirty(true); });
+  on("[data-back]", "click", () => {
+    if (dirty && !confirm("有未保存修改，确定离开？")) return;
+    return knowledgePage();
+  });
   on("#chapter-form", "submit", async (e) => {
     await api("/knowledge" + (id ? "/" + id : ""), {
       method: id ? "PUT" : "POST",
@@ -265,92 +314,5 @@ async function editChapter(id) {
     await api("/knowledge/" + id, { method: "DELETE", etag: c.etag });
     await knowledgePage();
     status("章节已删除。");
-  });
-}
-export async function sitePage() {
-  const data = await api("/site"),
-    s = data.value;
-  const [media, articles] = await Promise.all([
-    allPages("/media?state=Ready"),
-    allPages("/articles?state=Published"),
-  ]);
-  root.innerHTML = `<h1>首页与关于</h1><form id="site-form">${area("首页自我介绍", "homeAbout", s.homeAbout)}${field("关于页面标题", "aboutTitle", s.aboutTitle)}${area("关于正文", "aboutText", s.aboutText)}${area("补充说明", "aboutNote", s.aboutNote)}${field("主题标签（逗号分隔）", "topics", s.topics.join(","))}<fieldset><legend>首页推荐文章（最多三篇，下方可调整顺序）</legend>${articles.map((a) => `<label class="choice"><input type="checkbox" name="featured" value="${a.id}" ${s.featuredIds.includes(a.id) ? "checked" : ""}/>${esc(a.draft?.title || a.slug)}</label>`).join("")}<ul class="sort-list" id="featured-order"></ul></fieldset><fieldset><legend>画廊图片（最多十张，下方可调整顺序）</legend>${media
-    .filter((m) => m.kind === "Image")
-    .map(
-      (m) =>
-        `<label class="choice"><input type="checkbox" name="gallery" value="${m.id}" ${s.galleryIds.includes(m.id) ? "checked" : ""}/><img class="media-thumb" src="${m.src}" alt=""/>${esc(m.alt || m.caption || m.id.slice(0, 8))}</label>`,
-    )
-    .join(
-      "",
-    )}<ul class="sort-list" id="gallery-order"></ul></fieldset><div class="actions"><button>保存并应用首页与关于</button></div></form>`;
-  const ordered = { featured: [...s.featuredIds], gallery: [...s.galleryIds] };
-  const form = root.querySelector("#site-form");
-  function paint(name) {
-    const list = root.querySelector("#" + name + "-order");
-    list.innerHTML = ordered[name]
-      .map((id) => {
-        const item =
-          name === "featured"
-            ? articles.find((a) => a.id === id)
-            : media.find((m) => m.id === id);
-        return `<li data-id="${id}"><span>${esc(name === "featured" ? item?.draft?.title || id : item?.alt || item?.caption || id)}</span><div><button type="button" data-up aria-label="上移">↑</button> <button type="button" data-down aria-label="下移">↓</button></div></li>`;
-      })
-      .join("");
-    list.onclick = (e) => {
-      const li = e.target.closest("li");
-      if (!li) return;
-      const i = ordered[name].indexOf(li.dataset.id);
-      if (e.target.closest("[data-up]") && i > 0)
-        [ordered[name][i - 1], ordered[name][i]] = [
-          ordered[name][i],
-          ordered[name][i - 1],
-        ];
-      if (e.target.closest("[data-down]") && i < ordered[name].length - 1)
-        [ordered[name][i + 1], ordered[name][i]] = [
-          ordered[name][i],
-          ordered[name][i + 1],
-        ];
-      paint(name);
-    };
-  }
-  for (const name of ["featured", "gallery"]) {
-    const checked = [
-      ...form.querySelectorAll(`input[name="${name}"]:checked`),
-    ].map((x) => x.value);
-    ordered[name] = ordered[name].filter((id) => checked.includes(id));
-    paint(name);
-  }
-  form.addEventListener("change", (e) => {
-    const name = e.target.name;
-    if (!ordered[name]) return;
-    const checked = [
-      ...form.querySelectorAll(`input[name="${name}"]:checked`),
-    ].map((x) => x.value);
-    ordered[name] = ordered[name]
-      .filter((id) => checked.includes(id))
-      .concat(checked.filter((id) => !ordered[name].includes(id)));
-    paint(name);
-  });
-  on("#site-form", "submit", async (e) => {
-    const f = e.currentTarget;
-    const checked = (name) => ordered[name];
-    await api("/site", {
-      method: "PUT",
-      etag: data.etag,
-      body: {
-        homeAbout: value(f, "homeAbout"),
-        aboutTitle: value(f, "aboutTitle"),
-        aboutText: value(f, "aboutText"),
-        aboutNote: value(f, "aboutNote"),
-        topics: value(f, "topics")
-          .split(/[,，]/)
-          .map((x) => x.trim())
-          .filter(Boolean),
-        featuredIds: checked("featured"),
-        galleryIds: checked("gallery"),
-      },
-    });
-    await sitePage();
-    status("首页与关于已更新。");
   });
 }

@@ -112,6 +112,11 @@ public sealed class ArticleService(BlogDbContext db, RichTextSchema schema, Cont
     public async Task<MutationReply> LifecycleAsync(Guid id, string action, HttpContext c, PurgeInput? purge = null)
     {
         var ct = c.RequestAborted; var article = await RequireAsync(id, ct); Versions.Require(c, Versions.Tag("article", id, article.Version));
+        if (action is "withdraw" or "trash" or "purge")
+        {
+            var site = ManagementService.SiteValue(await db.Set<SiteSettings>().SingleAsync(x => x.Id == 1, ct));
+            if (site.FeaturedIds.Contains(id)) throw new ApiFailure(409, "ARTICLE_FEATURED");
+        }
         switch (action)
         {
             case "withdraw" when article.State == ArticleState.Published: article.State = ArticleState.Withdrawn; break;

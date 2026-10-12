@@ -21,6 +21,7 @@ export async function bootstrap() {
   return data;
 }
 const messages = {
+  ARTICLE_FEATURED: "这篇文章正在首页精选中，请先替换精选文章，再撤回或移入回收站。",
   PRECONDITION_FAILED: "内容已在其他窗口更新。请先保留当前输入，再重新加载。",
   PRECONDITION_REQUIRED: "请重新加载当前内容后保存。",
   CSRF_INVALID: "登录状态已变化，请重新登录。",
@@ -76,14 +77,23 @@ export async function api(
         !["/session", "/session/reauth"].includes(path)
       )
         location.href = "/admin/login";
-      throw new Error(
+      const error = new Error(
         messages[data?.code] ||
           (response.status === 429
             ? "操作频繁，请稍后重试。"
             : data?.fields
-              ? "输入内容不符合要求，请检查长度、正文、专栏或媒体状态。"
+              ? Object.keys(data.fields).map(name => ({
+                  galleryIds: "首页画廊必须有 10 张不同的就绪图片。",
+                  featuredIds: "精选文章必须有 3 篇不同的已发布文章。",
+                  imageIds: "专栏必须有 3 张不同的就绪图片。",
+                  introduction: "请填写专栏介绍（最多 1200 字）。",
+                  name: "请填写有效名称。",
+                  homeAbout: "自我介绍最多 1200 字。",
+                }[name] || "输入内容不符合要求，请检查标记的字段。")).join(" ")
               : "操作未完成，请检查内容后重试。"),
       );
+      error.fields = data?.fields;
+      throw error;
     }
     if (data?.csrfToken) csrf = data.csrfToken;
     if (key) pendingKeys.delete(marker);
@@ -92,20 +102,43 @@ export async function api(
     if (mutate) writing = false;
   }
 }
-export function status(message) {
-  document.querySelector("#admin-status").textContent = message;
+let statusTimer, unsaved = false;
+window.addEventListener("beforeunload", e => {
+  if (unsaved) { e.preventDefault(); e.returnValue = ""; }
+});
+export function setDirty(value) { unsaved = value; }
+export function status(message, kind = "success") {
+  const panel = document.querySelector("#admin-status");
+  panel.querySelector("span").textContent = message;
+  panel.dataset.kind = kind;
+  panel.hidden = false;
+  clearTimeout(statusTimer);
+  panel.querySelector("button").onclick = () => { panel.hidden = true; };
+  if (kind === "success") statusTimer = setTimeout(() => { panel.hidden = true; }, 6500);
+}
+export function showError(error) {
+  root?.querySelectorAll(".is-invalid").forEach(el => { el.classList.remove("is-invalid"); el.removeAttribute("aria-invalid"); });
+  for (const name of Object.keys(error.fields || {})) {
+    root?.querySelectorAll(`[name="${name}"],[data-validation-for="${name}"]`).forEach(el => {
+      el.classList.add("is-invalid"); el.setAttribute("aria-invalid", "true");
+    });
+  }
+  status(error.message, "error");
 }
 export function on(selector, event, action, scope = root) {
   scope.querySelector(selector)?.addEventListener(event, async (e) => {
     e.preventDefault();
     const button = e.submitter || e.currentTarget;
-    if (button instanceof HTMLButtonElement) button.disabled = true;
+    if (button instanceof HTMLButtonElement) { button.disabled = true; button.classList.add("is-loading"); }
+    const controls = e.currentTarget.tagName === "FORM" ? [...e.currentTarget.elements].filter(control => !control.disabled) : [];
+    controls.forEach(control => { control.disabled = true; });
     try {
       await action(e);
     } catch (error) {
-      status(error.message);
+      showError(error);
     } finally {
-      if (button instanceof HTMLButtonElement) button.disabled = false;
+      controls.forEach(control => { if (control.isConnected) control.disabled = control.dataset.valid === "false"; });
+      if (button instanceof HTMLButtonElement) { button.classList.remove("is-loading"); button.disabled = button.dataset.valid === "false"; }
     }
   });
 }
@@ -125,9 +158,9 @@ export async function allPages(path) {
   return items;
 }
 export const field = (label, name, value = "", type = "text") =>
-  `<label>${label}<input name="${name}" type="${type}" value="${esc(value)}" ${type === "password" ? 'autocomplete="current-password"' : ""}/></label>`;
+  `<label>${label}<input class="form-control" name="${name}" type="${type}" value="${esc(value)}" ${type === "password" ? 'autocomplete="current-password"' : ""}/></label>`;
 export const area = (label, name, value = "") =>
-  `<label>${label}<textarea name="${name}">${esc(value)}</textarea></label>`;
+  `<label>${label}<textarea class="form-control" name="${name}">${esc(value)}</textarea></label>`;
 export const value = (form, name) => form.elements.namedItem(name).value;
 export function selectMedia(label, name, media, selected = null) {
   return `<label>${label}<select name="${name}"><option value="">不选择</option>${media
@@ -137,6 +170,33 @@ export function selectMedia(label, name, media, selected = null) {
         `<option value="${x.id}" ${x.id === selected ? "selected" : ""}>${esc(x.alt || x.caption || x.id.slice(0, 8))}</option>`,
     )
     .join("")}</select></label>`;
+}
+export function pageHeading(title, description, action = "") {
+  return `<div class="page-heading"><div><p class="eyebrow">ALWAYS CURIOUS / CONTENT STUDIO</p><h1>${title}</h1><p class="muted">${description}</p></div>${action}</div>`;
+}
+export function stateLabel(state) {
+  return { Draft: "草稿", Published: "已发布", Withdrawn: "已撤回", Trashed: "回收站", Purged: "已清空", Active: "已启用", Archived: "已归档", Processing: "处理中", Ready: "已就绪", Rejected: "处理失败" }[state] || state;
+}
+export function stateBadge(state) { return `<span class="badge state-badge" data-state-value="${esc(state)}">${esc(stateLabel(state))}</span>`; }
+export function enhanceControls(scope = document.body) {
+  scope.querySelectorAll("button").forEach(button => {
+    if (button.closest(".body-editor-toolbar")) { button.classList.add("btn", "btn-sm"); return; }
+    button.classList.add("btn");
+    if (button.classList.contains("danger")) button.classList.add("btn-outline-danger");
+    else if (!button.classList.contains("secondary") && ((button.closest("form") && button.type === "submit") || button.hasAttribute("data-new") || button.hasAttribute("data-publish"))) button.classList.add("btn-primary");
+  });
+  scope.querySelectorAll('input:not([type="checkbox"]):not([type="radio"]),textarea').forEach(el => el.classList.add("form-control"));
+  scope.querySelectorAll("select").forEach(el => el.classList.add("form-select"));
+  scope.querySelectorAll('input[type="checkbox"]').forEach(el => el.classList.add("form-check-input"));
+  scope.querySelectorAll("table").forEach(table => {
+    if (table.closest(".tiptap,.preview")) return;
+    table.classList.add("table", "responsive-table");
+    const labels = [...table.querySelectorAll("thead th")].map(el => el.textContent);
+    table.querySelectorAll("tbody tr").forEach(row => [...row.cells].forEach((cell, index) => { cell.dataset.label = labels[index] || ""; }));
+    if (!table.parentElement.classList.contains("table-scroll")) {
+      const wrapper = document.createElement("div"); wrapper.className = "table-scroll"; table.before(wrapper); wrapper.append(table);
+    }
+  });
 }
 export async function reauthenticate() {
   return new Promise((resolve) => {

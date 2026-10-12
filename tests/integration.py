@@ -154,9 +154,12 @@ class Acceptance(unittest.TestCase):
         ids=[c['id'] for c in self.columns];site=self.c.get('/site')
         self.c.change('/columns/order',{'ids':list(reversed(ids))},'PUT',site['etag'],False)
         self.assertEqual([c['id'] for c in self.c.public('/columns')],list(reversed(ids)))
-        col=self.c.change('/columns',{'slug':'column-'+uuid.uuid4().hex[:8],'name':'测试专栏','introduction':'说明','imageIds':[]},expected=201)
-        self.c.change('/columns/'+col['id']+'/activate',etag=col['etag'],expected=422)
-        col=self.c.change('/columns/'+col['id'],{'slug':col['slug'],'name':col['name'],'introduction':'说明','imageIds':self.columns[0]['imageIds']},'PUT',col['etag'],False)
+        body={'slug':'column-'+uuid.uuid4().hex[:8],'name':'测试专栏','introduction':'说明','imageIds':self.columns[0]['imageIds']}
+        for images in [[],body['imageIds'][:2],body['imageIds']+[self.cover],[self.cover]*3]:
+            rejected=self.c.change('/columns',{**body,'imageIds':images},expected=422)
+            self.assertIn('imageIds',rejected['fields'])
+        self.c.change('/columns',{**body,'introduction':'   '},expected=422)
+        col=self.c.change('/columns',body,expected=201)
         col=self.c.change('/columns/'+col['id']+'/activate',etag=col['etag']);self.c.public('/columns/'+col['slug'])
         col=self.c.change('/columns/'+col['id']+'/archive',etag=col['etag']);self.c.public('/columns/'+col['slug'],404)
         col=next(x for x in self.c.get('/columns')['items'] if x['publishedArticleCount']>0)
@@ -164,6 +167,15 @@ class Acceptance(unittest.TestCase):
         public=self.c.public('/columns/'+col['slug']);ids=[x['entityId'] for x in public['articles']]
         self.c.change('/columns/'+col['id']+'/articles/order',{'ids':list(reversed(ids))},'PUT',col['etag'],False)
         self.assertEqual([x['entityId'] for x in self.c.public('/columns/'+col['slug'])['articles']],list(reversed(ids)))
+        extra=[]
+        initial_count=len(self.c.public('/columns'))
+        self.assertLessEqual(initial_count,6)
+        for index in range(6-initial_count):
+            item=self.c.change('/columns',{**body,'slug':'six-'+uuid.uuid4().hex[:8],'name':'新增专栏 '+str(index+1)},expected=201)
+            extra.append(self.c.change('/columns/'+item['id']+'/activate',etag=item['etag']))
+        visible=self.c.public('/columns');self.assertEqual(len(visible),6)
+        self.assertTrue(all(len(item['images'])==3 for item in visible))
+        for item in extra:self.c.change('/columns/'+item['id']+'/archive',etag=item['etag'])
     def test_08_project_publication_isolation(self):
         p=self.c.change('/projects',{'title':'项目验收','slug':'project-'+uuid.uuid4().hex[:8]},expected=201)
         draft={**p['draft'],'body':'真实过程','summary':'已发布摘要','coverMediaId':self.cover}
@@ -178,10 +190,26 @@ class Acceptance(unittest.TestCase):
         chapter=self.c.change('/knowledge',{'title':'验收章节','articleIds':[a['id']]},expected=201)
         self.assertTrue(any(c['title']=='验收章节' for c in self.c.public('/knowledge')))
         self.assertIn(a['slug'],[i['slug'] for i in self.c.public('/articles?kind=Life')['items']])
-        site=self.c.get('/site');value={**site['value'],'aboutTitle':'后端设置已生效','featuredIds':[a['id']]}
+        site=self.c.get('/site');baseline=copy.deepcopy(site['value'])
+        for count in [0,2,4]:
+            ids=baseline['featuredIds'][:count] if count<3 else baseline['featuredIds']+[a['id']]
+            rejected=self.c.change('/site',{**baseline,'featuredIds':ids},'PUT',site['etag'],False,422)
+            self.assertIn('featuredIds',rejected['fields'])
+        for ids in [baseline['galleryIds'][:9],baseline['galleryIds']+[str(uuid.uuid4())],[baseline['galleryIds'][0]]*10]:
+            rejected=self.c.change('/site',{**baseline,'galleryIds':ids},'PUT',site['etag'],False,422)
+            self.assertIn('galleryIds',rejected['fields'])
+        self.c.change('/site',{**baseline,'featuredIds':[a['id']]*3},'PUT',site['etag'],False,422)
+        value={**baseline,'aboutTitle':'后端设置已生效','homeAbout':'First line\n第二行\n\nFourth line <script>literal</script>','featuredIds':[a['id']]+baseline['featuredIds'][:2],'galleryIds':list(reversed(baseline['galleryIds']))}
         self.c.change('/site',value,'PUT',site['etag'],False)
         self.assertEqual(self.c.public('/about')['title'],value['aboutTitle']);self.assertEqual(self.c.public('/home')['featured'][0]['slug'],a['slug'])
+        home=self.c.public('/home');self.assertEqual(home['homeAbout'],value['homeAbout']);self.assertEqual(len(home['featured']),3)
+        self.assertEqual([image['id'] for image in home['gallery']],value['galleryIds'])
+        for action in ['withdraw','trash']:
+            blocked=self.c.change('/articles/'+a['id']+'/'+action,etag=a['etag'],expected=409)
+            self.assertEqual(blocked['code'],'ARTICLE_FEATURED')
+        site=self.c.get('/site');self.c.change('/site',{**site['value'],'featuredIds':baseline['featuredIds']},'PUT',site['etag'],False)
         a=self.c.change('/articles/'+a['id']+'/withdraw',etag=a['etag']);self.assertFalse(any(c['title']=='验收章节' for c in self.c.public('/knowledge')))
+        self.assertEqual(len(self.c.public('/home')['featured']),3)
         self.c.change('/knowledge/'+chapter['id'],method='DELETE',etag=chapter['etag'],key=False)
     def test_10_native_image_pipeline_and_references(self):
         png=subprocess.check_output([env.get('Media__FfmpegPath','ffmpeg'),'-v','error','-f','lavfi','-i','color=c=red:s=64x64','-frames:v','1','-f','image2pipe','-vcodec','png','-'])

@@ -1,5 +1,66 @@
+@{ var login = Context.Request.Path.StartsWithSegments("/admin/login"); }
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>内容管理 · Always Curious</title><link rel="icon" type="image/png" href="/assets/about/glass-cursor.png"/><link rel="stylesheet" href="/css/admin.css"/><script type="module" src="/js/admin/app.js"></script></head>
-<body><header class="admin-header"><a href="/admin">Always Curious <span>内容管理</span></a><div><a href="/" target="_blank" rel="noopener">查看网站 ↗</a><button type="button" id="logout" hidden>退出登录</button></div></header>
-<div class="admin-shell"><nav class="admin-nav" aria-label="内容管理"><a href="/admin/articles">文章与随记</a><a href="/admin/columns">专栏与排序</a><a href="/admin/media">媒体库</a><a href="/admin/knowledge">知识库章节</a><a href="/admin/projects">项目展览</a><a href="/admin/site">首页与关于</a><a href="/admin/operations">备份与操作记录</a></nav>
-<main id="admin-main">@RenderBody()</main></div><p id="admin-status" role="status" aria-live="polite"></p></body></html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>内容管理 · Always Curious</title>
+  <link rel="icon" type="image/png" href="/assets/about/glass-cursor.png"/>
+  <link rel="stylesheet" href="/vendor/tabler/tabler.min.css"/>
+  <link rel="stylesheet" href="/css/admin.css"/>
+  <script type="module" src="/js/admin/app.js"></script>
+</head>
+<body class="admin-ui @(login ? "admin-login" : "")">
+<svg class="admin-symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <symbol id="nav-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1"/><path d="m3 16 5-5 4 4 3-3 6 6"/></symbol>
+  <symbol id="nav-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol>
+  <symbol id="nav-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.8 6.4.9-4.6 4.5 1.1 6.3-5.7-3-5.7 3 1.1-6.3L3 9.7l6.2-.9Z"/></symbol>
+  <symbol id="nav-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></symbol>
+  <symbol id="nav-file" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9Zm0 0v6h6M8 13h8M8 17h5"/></symbol>
+  <symbol id="nav-book" viewBox="0 0 24 24"><path d="M12 5v16M12 5C8 2 4 3 2 4v15c4-1 7-1 10 2 3-3 6-3 10-2V4c-2-1-6-2-10 1Z"/></symbol>
+  <symbol id="nav-case" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="3"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12a20 20 0 0 0 18 0M10 12h4"/></symbol>
+  <symbol id="nav-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v.01"/></symbol>
+  <symbol id="nav-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Zm-4 9 3 3 5-6"/></symbol>
+</svg>
+@if (!login) {
+  <a class="admin-skip" href="#admin-main">跳到主要内容</a>
+  <button class="sidebar-backdrop" id="sidebar-backdrop" type="button" aria-label="关闭导航" hidden></button>
+  <aside class="admin-sidebar" id="admin-sidebar" aria-label="管理导航">
+    <a class="admin-brand" href="/admin/gallery"><span class="brand-mark">✳</span><span>Always Curious<small>个人内容工作台</small></span></a>
+    <nav class="admin-nav" aria-label="内容管理">
+      <div class="nav-group"><p>首页展示</p>
+        <a href="/admin/gallery"><svg><use href="#nav-image"/></svg><span>首页画廊</span></a>
+        <a href="/admin/introduction"><svg><use href="#nav-person"/></svg><span>自我介绍</span></a>
+        <a href="/admin/featured"><svg><use href="#nav-star"/></svg><span>精选文章</span></a>
+        <a href="/admin/columns"><svg><use href="#nav-layers"/></svg><span>专栏管理</span></a>
+      </div>
+      <div class="nav-group"><p>内容管理</p>
+        <a href="/admin/articles"><svg><use href="#nav-file"/></svg><span>文章与随记</span></a>
+        <a href="/admin/knowledge"><svg><use href="#nav-book"/></svg><span>知识库章节</span></a>
+        <a href="/admin/projects"><svg><use href="#nav-case"/></svg><span>项目展览</span></a>
+      </div>
+      <div class="nav-group"><p>资源管理</p>
+        <a href="/admin/media"><svg><use href="#nav-image"/></svg><span>媒体库</span></a>
+      </div>
+      <div class="nav-group"><p>站点维护</p>
+        <a href="/admin/about"><svg><use href="#nav-info"/></svg><span>关于页面</span></a>
+        <a href="/admin/operations"><svg><use href="#nav-shield"/></svg><span>备份与操作记录</span></a>
+      </div>
+    </nav>
+    <div class="sidebar-footer"><span class="account-avatar">AC</span><div><strong>管理员</strong><small>Always Curious</small></div></div>
+  </aside>
+  <div class="admin-workspace">
+    <header class="admin-header">
+      <div class="header-location"><button id="sidebar-toggle" type="button" class="btn icon-button" aria-label="打开导航" aria-controls="admin-sidebar" aria-expanded="false">☰</button><span id="admin-section-group">首页展示</span><span class="breadcrumb-divider">/</span><strong id="admin-section-title">内容管理</strong></div>
+      <div class="header-actions"><a href="/" target="_blank" rel="noopener">查看网站 <span aria-hidden="true">↗</span></a><button type="button" class="btn" id="logout">退出登录</button></div>
+    </header>
+    <main id="admin-main" tabindex="-1">@RenderBody()</main>
+    <footer class="admin-footer">Always Curious <span>让内容慢慢生长。</span></footer>
+  </div>
+} else {
+  <header class="login-header"><a href="/" class="admin-brand"><span class="brand-mark">✳</span><span>Always Curious</span></a><a href="/">返回网站 ↗</a></header>
+  <main id="admin-main">@RenderBody()</main>
+}
+<div id="admin-status" role="status" aria-live="polite" hidden><span></span><button type="button" aria-label="关闭提示">×</button></div>
+</body>
+</html>

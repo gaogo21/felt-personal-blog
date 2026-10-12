@@ -1,2 +1,11 @@
 @page "/admin/login"
-<section class="login-panel"><p class="eyebrow">ALWAYS CURIOUS</p><h1>登录内容管理</h1><form id="login-form"><label>用户名<input name="userName" autocomplete="username" required maxlength="100"/></label><label>密码<input name="password" type="password" autocomplete="current-password" required maxlength="1024"/></label><button type="submit">登录</button><p id="login-error" role="alert"></p></form></section>
+<section class="login-panel">
+  <span class="login-emblem">✳</span><p class="eyebrow">ALWAYS CURIOUS</p>
+  <h1>欢迎回来</h1><p class="muted">登录你的内容工作台，继续记录与分享。</p>
+  <form id="login-form">
+    <label>用户名<input class="form-control" name="userName" autocomplete="username" required maxlength="100"/></label>
+    <label>密码<input class="form-control" name="password" type="password" autocomplete="current-password" required maxlength="1024"/></label>
+    <button type="submit" class="btn btn-primary">登录工作台 <span aria-hidden="true">→</span></button>
+    <p id="login-error" role="alert"></p>
+  </form>
+</section>

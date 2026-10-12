@@ -1,0 +1,16 @@
+{
+  "name": "felt-blog-admin-ui",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@tabler/core": "1.6.1"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}

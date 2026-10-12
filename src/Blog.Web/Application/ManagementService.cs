@@ -27,11 +27,16 @@ public sealed class ManagementService(BlogDbContext db, ContentImages images)
             AboutText = Text(input.AboutText, 3000, "aboutText"),
             AboutNote = Text(input.AboutNote, 1200, "aboutNote"),
             Topics = Strings(input.Topics, 12, 40, "topics"),
-            GalleryIds = Unique(input.GalleryIds, 10, "galleryIds"),
-            FeaturedIds = Unique(input.FeaturedIds, 3, "featuredIds")
+            GalleryIds = Exact(input.GalleryIds, 10, "galleryIds"),
+            FeaturedIds = Exact(input.FeaturedIds, 3, "featuredIds")
         };
         foreach (var id in input.GalleryIds) _ = await images.ReadyAsync(id, MediaKind.Image, c.RequestAborted);
-        if (await db.Set<Article>().CountAsync(x => input.FeaturedIds.Contains(x.Id) && x.State == ArticleState.Published, c.RequestAborted) != input.FeaturedIds.Length) throw ArticleInput.Invalid("featuredIds", FieldIssue.Unavailable);
+        var featuredCount = await (from a in db.Set<Article>()
+                                   join r in db.Set<ArticleRevision>() on a.PublishedRevisionId equals (Guid?)r.Id
+                                   join col in db.Set<Column>() on r.ColumnId equals col.Id
+                                   where input.FeaturedIds.Contains(a.Id) && a.State == ArticleState.Published && col.State == ColumnState.Active
+                                   select a.Id).CountAsync(c.RequestAborted);
+        if (featuredCount != 3) throw ArticleInput.Invalid("featuredIds", FieldIssue.Unavailable);
         site.Json = JsonSerializer.Serialize(input, ApiJson.Options); site.Version++;
         await images.ReplaceReferencesAsync("Gallery", SiteOwnerId, input.GalleryIds.Select(x => (x, "Gallery")), c.RequestAborted);
         return new(new { etag = SiteTag(site.Version), value = input }, ETag: SiteTag(site.Version), TargetId: SiteOwnerId);
@@ -88,8 +93,7 @@ public sealed class ManagementService(BlogDbContext db, ContentImages images)
         if (action is "activate" or "restore" && value.State != ColumnState.Active)
         {
             var ids = JsonSerializer.Deserialize<Guid[]>(value.ImageIdsJson)!;
-            if (ids.Length != 3) throw ArticleInput.Invalid("imageIds");
-            foreach (var media in ids) _ = await images.ReadyAsync(media, MediaKind.Image, c.RequestAborted);
+            _ = await ValidateColumnAsync(new(value.Slug, value.Name, value.Introduction, ids), c.RequestAborted);
             value.State = ColumnState.Active;
         }
         else if (action == "archive" && value.State != ColumnState.Archived)
@@ -208,8 +212,9 @@ public sealed class ManagementService(BlogDbContext db, ContentImages images)
     }
     private async Task<ColumnInput> ValidateColumnAsync(ColumnInput input, CancellationToken ct)
     {
-        input = input with { Slug = ArticleInput.Slug(input.Slug), Name = Text(input.Name, ContentLimits.ColumnNameScalars, "name"), Introduction = Text(input.Introduction, 1200, "introduction"), ImageIds = Unique(input.ImageIds, 3, "imageIds") };
+        input = input with { Slug = ArticleInput.Slug(input.Slug), Name = Text(input.Name, ContentLimits.ColumnNameScalars, "name"), Introduction = Text(input.Introduction, 1200, "introduction"), ImageIds = Exact(input.ImageIds, 3, "imageIds") };
         if (string.IsNullOrWhiteSpace(input.Name)) throw ArticleInput.Invalid("name", FieldIssue.Required);
+        if (string.IsNullOrWhiteSpace(input.Introduction)) throw ArticleInput.Invalid("introduction", FieldIssue.Required);
         foreach (var id in input.ImageIds) _ = await images.ReadyAsync(id, MediaKind.Image, ct);
         return input;
     }
@@ -218,6 +223,8 @@ public sealed class ManagementService(BlogDbContext db, ContentImages images)
     { if (values is null || values.Length > count) throw ArticleInput.Invalid(field); return values.Select(v => Text(v, limit, field)).ToArray(); }
     private static Guid[] Unique(Guid[]? ids, int maximum, string field)
     { if (ids is null || ids.Length > maximum || ids.Contains(Guid.Empty) || ids.Distinct().Count() != ids.Length) throw ArticleInput.Invalid(field); return ids; }
+    private static Guid[] Exact(Guid[]? ids, int count, string field)
+    { var value = Unique(ids, count, field); if (value.Length != count) throw ArticleInput.Invalid(field); return value; }
     private static void ExactOrder(Guid[]? ids, IEnumerable<Guid> current)
     { if (ids is null || ids.Distinct().Count() != ids.Length || !ids.ToHashSet().SetEquals(current)) throw ArticleInput.Invalid("ids"); }
 }

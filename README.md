@@ -11,6 +11,8 @@
 ```sh
 npm ci --prefix frontend/editor
 npm run build --prefix frontend/editor
+npm ci --prefix frontend/admin
+npm run build --prefix frontend/admin
 # 将下列配置写入仅本机保存的 runtime/dev.env，或直接设置环境变量。
 export ASPNETCORE_ENVIRONMENT=Development
 export ASPNETCORE_URLS=http://127.0.0.1:5080
@@ -29,6 +31,8 @@ export Media__ScannerDatabasePath=/var/lib/clamav
 macOS Homebrew 的三个工具通常位于 `/opt/homebrew/bin/`，应配置实际绝对路径。`--seed-demo` 可选且只向空内容库首次导入示例；重复执行不会覆盖修改。数据库迁移必须显式运行；普通启动不自动迁移。初始化已有管理员时会拒绝覆盖；需要改密码时使用 `--reset-admin`，原会话随之失效。
 
 网站：`http://127.0.0.1:5080/`；管理后台：`http://127.0.0.1:5080/admin`。
+
+后台使用 Tabler + 定制 CSS，保留 Razor 与原生 JavaScript。首页画廊固定 10 张、精选固定 3 篇、每个专栏固定 3 张图片；图片位置与自我介绍换行同步到公开页面。模块、保存边界和构建说明见 [管理员工作台](docs/admin-ui.md)。
 
 `dist/` 仍是可编辑的网页源码目录。现在需要后端 API，单独运行 Python 静态服务器只适合查看静态资源。
 
@@ -60,6 +64,8 @@ docker compose --profile app up -d app
 ```sh
 npm test --prefix frontend/editor
 npm run build --prefix frontend/editor
+npm test --prefix frontend/admin
+npm run build --prefix frontend/admin
 node validate.mjs
 dotnet build src/Blog.Web
 dotnet tool restore
@@ -77,6 +83,7 @@ dotnet publish src/Blog.Web -c Release -o artifacts/publish
 ```text
 src/Blog.Web/        后端源码、Razor 管理入口、管理页面脚本
 frontend/editor/    从历史记录恢复的 Tiptap 编辑器及测试
+frontend/admin/     锁定版本的 Tabler 样式构建与后台交互测试
 Infrastructure/     位于 src/Blog.Web 下：数据库、媒体处理、身份与备份
 data/               受校验的示例内容
 eng/                开发启动、恢复记录校验、示例转换脚本
